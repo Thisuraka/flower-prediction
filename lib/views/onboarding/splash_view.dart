@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flower_prediction/utils/app_strings.dart';
-import 'package:flower_prediction/views/onboarding/info_view.dart';
+import 'package:flower_prediction/views/onboarding/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
@@ -15,9 +15,9 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    // Timer(const Duration(seconds: 4), () {
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const InfoView()));
-    // });
+    Timer(const Duration(seconds: 4), () {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeView()));
+    });
     super.initState();
   }
 
@@ -49,6 +49,7 @@ class _SplashViewState extends State<SplashView> {
                 AppStrings.splashDesc,
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontSize: 12,
                   color: Color(0xACFFFFFF),
                   fontStyle: FontStyle.italic,
                 ),
