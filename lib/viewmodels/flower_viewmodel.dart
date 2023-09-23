@@ -1,13 +1,8 @@
 import 'dart:io';
-import 'dart:math';
-
-import 'package:flower_prediction/models/base_api_response.dart';
 import 'package:flower_prediction/service/flower_service.dart';
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/camera_helper.dart';
 import 'package:flower_prediction/utils/navigation_service.dart';
-import 'package:flower_prediction/utils/urls.dart';
-import 'package:flower_prediction/utils/utils.dart';
 import 'package:flower_prediction/widgets/common_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
