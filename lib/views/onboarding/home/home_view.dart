@@ -28,9 +28,20 @@ class _HomeViewState extends State<HomeView> {
               image: AssetImage("assets/images/home_bg.png"),
               fit: BoxFit.cover,
             ),
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF6A9976),
+                Color(0xFF6E8772),
+              ],
+              begin: FractionalOffset(0.0, 0.0),
+              end: FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp,
+            ),
           ),
           child: Consumer<FlowerViewModel>(builder: (context, model, child) {
             return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
