@@ -19,9 +19,7 @@ class HomeTileWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: MediaQuery.of(context).size.width / 2.5,
-        height: MediaQuery.of(context).size.width / 2.5,
-        margin: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           image: const DecorationImage(
             alignment: Alignment.bottomCenter,
@@ -42,15 +40,28 @@ class HomeTileWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+        child: Column(children: [
+          Flexible(
+            flex: 1,
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+            ),
           ),
-          Image.asset(
-            asset,
-            height: 110,
+          Flexible(
+            flex: 3,
+            child: Container(
+              decoration: BoxDecoration(
+                // color: Colors.blue,
+                image: DecorationImage(
+                  alignment: Alignment.bottomCenter,
+                  image: AssetImage(asset),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
           )
         ]),
       ),

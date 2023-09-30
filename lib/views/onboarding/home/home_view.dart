@@ -41,7 +41,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           child: Consumer<FlowerViewModel>(builder: (context, model, child) {
             return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -64,8 +64,14 @@ class _HomeViewState extends State<HomeView> {
                     index == 0 ? model.isCamera = true : model.isCamera = false;
                   },
                 ),
-                Row(
-                  children: [
+                Expanded(
+                    child: GridView.count(
+                  primary: false,
+                  padding: const EdgeInsets.all(20),
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                  crossAxisCount: 2,
+                  children: <Widget>[
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_disease.png',
                       title: AppStrings.diseaseDetection,
@@ -76,10 +82,6 @@ class _HomeViewState extends State<HomeView> {
                       title: AppStrings.predictFlower,
                       onTap: () {},
                     ),
-                  ],
-                ),
-                Row(
-                  children: [
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_growth.png',
                       title: AppStrings.plantGrowth,
@@ -91,7 +93,7 @@ class _HomeViewState extends State<HomeView> {
                       onTap: () {},
                     ),
                   ],
-                ),
+                ))
               ],
             );
           }),
