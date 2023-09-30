@@ -42,16 +42,16 @@ class HomeTileWidget extends StatelessWidget {
         ),
         child: Column(children: [
           Flexible(
-            flex: 1,
+            flex: 5,
             child: Text(
               title,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                  color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
             ),
           ),
           Flexible(
-            flex: 3,
+            flex: 15,
             child: Container(
               decoration: BoxDecoration(
                 // color: Colors.blue,
