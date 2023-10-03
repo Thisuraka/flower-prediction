@@ -1,6 +1,7 @@
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/app_strings.dart';
 import 'package:flower_prediction/viewmodels/flower_viewmodel.dart';
+import 'package:flower_prediction/views/map/vendor_map.dart';
 import 'package:flower_prediction/widgets/home_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -90,7 +91,13 @@ class _HomeViewState extends State<HomeView> {
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_distance.png',
                       title: AppStrings.vendorProximity,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const VendorMap()),
+                        );
+                      },
                     ),
                   ],
                 ))

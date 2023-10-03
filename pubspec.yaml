@@ -21,6 +21,7 @@ dependencies:
   shared_preferences:
   shimmer_animation:
   toggle_switch:
+  google_maps_flutter: ^2.5.0
 
 dev_dependencies:
   flutter_test:
