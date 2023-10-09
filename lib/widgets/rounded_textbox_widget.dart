@@ -10,6 +10,7 @@ class RoundedTextboxWidget extends StatelessWidget {
   int maxLine;
   String labelText;
   bool obscureText;
+  TextAlign textAlign;
   double verticalMargin;
   String? Function(dynamic)? validator;
 
@@ -21,6 +22,7 @@ class RoundedTextboxWidget extends StatelessWidget {
     this.minLine = 1,
     this.maxLine = 1,
     this.verticalMargin = 20,
+    this.textAlign = TextAlign.left,
     required this.labelText,
     this.obscureText = false,
     this.validator,
@@ -33,20 +35,27 @@ class RoundedTextboxWidget extends StatelessWidget {
   );
 
   static InputBorder errorBorder = const OutlineInputBorder(borderSide: BorderSide(color: Colors.red));
+  static InputBorder border = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(8),
+    borderSide: const BorderSide(
+      width: 0,
+      style: BorderStyle.none,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 40,
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.symmetric(horizontal: 45, vertical: verticalMargin),
+      margin: EdgeInsets.symmetric(vertical: verticalMargin),
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0.0),
       decoration: BoxDecoration(
         color: Colors.black12,
         borderRadius: BorderRadius.circular(60),
       ),
       child: TextFormField(
-        style: const TextStyle(fontSize: 16.0),
+        style: const TextStyle(fontSize: 14.0),
         maxLines: maxLine,
         minLines: minLine,
         keyboardType: keyboardType,
@@ -54,15 +63,15 @@ class RoundedTextboxWidget extends StatelessWidget {
         validator: validator,
         controller: controller,
         obscureText: obscureText,
-        cursorColor: Colors.purple,
+        cursorColor: greenLvl1,
         cursorHeight: 15,
+        textAlign: textAlign,
         decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: labelText,
+          border: border,
+          labelText: labelText,
           enabled: enabled,
-          fillColor: Colors.black12,
-          hintStyle: hintStyle,
-          contentPadding: const EdgeInsets.all(20),
+          labelStyle: hintStyle,
+          contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
         ),
       ),
     );
