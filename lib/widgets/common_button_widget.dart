@@ -1,3 +1,4 @@
+import 'package:flower_prediction/style.dart';
 import 'package:flutter/material.dart';
 
 class CommonButtonWidget extends StatelessWidget {
@@ -12,15 +13,11 @@ class CommonButtonWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: size,
-        height: 60,
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.only(left: 20),
+        height: 40,
+        alignment: Alignment.center,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          image: DecorationImage(
-            image: AssetImage('assets/images/common_btn_bg.png'),
-            fit: BoxFit.fill,
-          ),
+          color: greenLvl2,
         ),
         child: Text(
           text,

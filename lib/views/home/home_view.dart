@@ -1,5 +1,6 @@
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/app_strings.dart';
+import 'package:flower_prediction/utils/enums/processor_type.dart';
 import 'package:flower_prediction/viewmodels/flower_viewmodel.dart';
 import 'package:flower_prediction/views/map/vendor_map.dart';
 import 'package:flower_prediction/widgets/home_tile_widget.dart';
@@ -76,26 +77,32 @@ class _HomeViewState extends State<HomeView> {
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_disease.png',
                       title: AppStrings.diseaseDetection,
-                      onTap: () {},
+                      onTap: () {
+                        model.addImage(context, ProcessorType.disease);
+                      },
                     ),
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_flower.png',
                       title: AppStrings.predictFlower,
-                      onTap: () {},
+                      onTap: () {
+                        model.addImage(context, ProcessorType.predictFlower);
+                      },
                     ),
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_growth.png',
                       title: AppStrings.plantGrowth,
-                      onTap: () {},
+                      onTap: () {
+                        model.addImage(context, ProcessorType.growth);
+                      },
                     ),
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_distance.png',
                       title: AppStrings.vendorProximity,
                       onTap: () {
+                        // model.addImage(context, ProcessorType.vendor);
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const VendorMap()),
+                          MaterialPageRoute(builder: (context) => const VendorMap()),
                         );
                       },
                     ),

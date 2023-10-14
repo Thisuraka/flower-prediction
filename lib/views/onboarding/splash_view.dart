@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flower_prediction/utils/app_strings.dart';
-import 'package:flower_prediction/views/onboarding/home/home_view.dart';
+import 'package:flower_prediction/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
