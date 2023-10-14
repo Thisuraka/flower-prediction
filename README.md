@@ -3,11 +3,9 @@
 
  Expert Predicting System for Farmers and Newcomers in the Floral Industry
 
-
 ## Environment Setup
 
 Flutter Channel stable -- 3.10.4
-
 
 ## Google Maps Configuration
 
@@ -20,7 +18,6 @@ Create `api_keys.xml` resource in `android/app/src/main/res/values` with the fol
 <resources>
     <string name="MAPS_KEY">GOOGLE_MAPS_API_KEY</string>
 </resources>
-```
 ## iOS
 
 Create `Config.xcconfig` resource in `ios/Config.xcconfig` with the following code
@@ -37,6 +34,3 @@ Create `Config.xcconfig` resource in `ios/Config.xcconfig` with the following co
 // https://help.apple.com/xcode/#/dev745c5c974
 MAPS_KEY = GOOGLE_MAPS_API_KEY
 ```
-
-
-

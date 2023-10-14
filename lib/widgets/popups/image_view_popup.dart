@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flower_prediction/utils/app_strings.dart';
-import 'package:flower_prediction/widgets/rounded_textbox_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
