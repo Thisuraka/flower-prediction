@@ -5,15 +5,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flower_prediction/service/flower_service.dart';
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/camera_helper.dart';
-import 'package:flower_prediction/utils/enums/processor_type.dart';
 import 'package:flower_prediction/widgets/popups/image_view_popup.dart';
 
-class FlowerViewModel extends ChangeNotifier {
+class GrowthViewModel extends ChangeNotifier {
   final FlowerService service = FlowerService();
 
   XFile? imageFile;
   bool isGen = false;
-  bool isCamera = false;
 
   String selectedMonthForGrowth = "";
 
@@ -21,15 +19,14 @@ class FlowerViewModel extends ChangeNotifier {
     isGen = !isGen;
   }
 
-  Future<void> addImage(BuildContext context, ProcessorType processorType) async {
+  Future<void> addImage(BuildContext context, bool isCamera) async {
     if (isCamera) {
       imageFile = await CameraHelper.takeImages();
     } else {
       imageFile = await CameraHelper.selectImages();
     }
-
-    if (processorType == ProcessorType.growth) {
-      // ignore: use_build_context_synchronously
+    
+    if (context.mounted) {
       growthImageViewPopup(
         imageFile: imageFile,
         context: context,
@@ -45,38 +42,6 @@ class FlowerViewModel extends ChangeNotifier {
         },
         onSelected: (value) {
           selectedMonthForGrowth = value ?? "1";
-        },
-      );
-    } else {
-      // ignore: use_build_context_synchronously
-      imageViewPopup(
-        imageFile: imageFile,
-        context: context,
-        onTap: () {
-          EasyLoading.instance
-            ..displayDuration = const Duration(milliseconds: 2000)
-            ..indicatorColor = Colors.white
-            ..maskColor = const Color(0xDA1B0130)
-            ..textColor = greenLvl1
-            ..dismissOnTap = false;
-          EasyLoading.show(status: 'loading...');
-
-          switch (processorType) {
-            case ProcessorType.disease:
-              // process();
-              break;
-            case ProcessorType.predictFlower:
-              // process();
-              break;
-            case ProcessorType.growth:
-              // process();
-              break;
-            case ProcessorType.vendor:
-              // process();
-              break;
-            case ProcessorType.all:
-            // process();
-          }
         },
       );
     }

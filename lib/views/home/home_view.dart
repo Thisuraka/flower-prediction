@@ -1,7 +1,8 @@
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/app_strings.dart';
-import 'package:flower_prediction/utils/enums/processor_type.dart';
-import 'package:flower_prediction/viewmodels/flower_viewmodel.dart';
+import 'package:flower_prediction/viewmodels/growth_viewmodel.dart';
+import 'package:flower_prediction/viewmodels/home_viewmodel.dart';
+import 'package:flower_prediction/viewmodels/predict_flower_viewmodel.dart';
 import 'package:flower_prediction/views/map/vendor_map.dart';
 import 'package:flower_prediction/widgets/home_tile_widget.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +42,8 @@ class _HomeViewState extends State<HomeView> {
               tileMode: TileMode.clamp,
             ),
           ),
-          child: Consumer<FlowerViewModel>(builder: (context, model, child) {
+          child: Consumer<HomeViewModel>(builder: (context, homeModel, child) {
             return Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -63,7 +63,7 @@ class _HomeViewState extends State<HomeView> {
                     'Gallery',
                   ],
                   onToggle: (index) {
-                    index == 0 ? model.isCamera = true : model.isCamera = false;
+                    index == 0 ? homeModel.isCamera = true : homeModel.isCamera = false;
                   },
                 ),
                 Expanded(
@@ -77,29 +77,29 @@ class _HomeViewState extends State<HomeView> {
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_disease.png',
                       title: AppStrings.diseaseDetection,
-                      onTap: () {
-                        model.addImage(context, ProcessorType.disease);
-                      },
+                      onTap: () {},
                     ),
-                    HomeTileWidget(
-                      asset: 'assets/images/home_tile_flower.png',
-                      title: AppStrings.predictFlower,
-                      onTap: () {
-                        model.addImage(context, ProcessorType.predictFlower);
-                      },
-                    ),
-                    HomeTileWidget(
-                      asset: 'assets/images/home_tile_growth.png',
-                      title: AppStrings.plantGrowth,
-                      onTap: () {
-                        model.addImage(context, ProcessorType.growth);
-                      },
-                    ),
+                    Consumer<PredictFlowerViewModel>(builder: (context, model, child) {
+                      return HomeTileWidget(
+                        asset: 'assets/images/home_tile_flower.png',
+                        title: AppStrings.predictFlower,
+                        onTap: () {
+                          model.addInputs(context);},
+                      );
+                    }),
+                    Consumer<GrowthViewModel>(builder: (context, model, child) {
+                      return HomeTileWidget(
+                        asset: 'assets/images/home_tile_growth.png',
+                        title: AppStrings.plantGrowth,
+                        onTap: () {
+                          model.addImage(context, homeModel.isCamera);
+                        },
+                      );
+                    }),
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_distance.png',
                       title: AppStrings.vendorProximity,
                       onTap: () {
-                        // model.addImage(context, ProcessorType.vendor);
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const VendorMap()),
