@@ -4,4 +4,5 @@ class AppStrings {
   static const predictFlower = "Predict\nFlower";
   static const plantGrowth = "Plant\nGrowth";
   static const vendorProximity = "Vendor\nProximity";
+  static const monthsOld = "Months old";
 }

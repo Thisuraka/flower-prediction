@@ -10,11 +10,12 @@ import 'package:flower_prediction/widgets/popups/image_view_popup.dart';
 
 class FlowerViewModel extends ChangeNotifier {
   final FlowerService service = FlowerService();
-  TextEditingController growthMonthInputController = TextEditingController();
 
   XFile? imageFile;
   bool isGen = false;
   bool isCamera = false;
+
+  String selectedMonthForGrowth = "";
 
   void setGen() {
     isGen = !isGen;
@@ -32,7 +33,6 @@ class FlowerViewModel extends ChangeNotifier {
       growthImageViewPopup(
         imageFile: imageFile,
         context: context,
-        controller: growthMonthInputController,
         onTap: () {
           EasyLoading.instance
             ..displayDuration = const Duration(milliseconds: 2000)
@@ -42,6 +42,9 @@ class FlowerViewModel extends ChangeNotifier {
             ..dismissOnTap = false;
           EasyLoading.show(status: 'loading...');
           // process();
+        },
+        onSelected: (value) {
+          selectedMonthForGrowth = value ?? "1";
         },
       );
     } else {

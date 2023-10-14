@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flower_prediction/utils/app_strings.dart';
 import 'package:flower_prediction/widgets/rounded_textbox_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -57,9 +58,19 @@ void imageViewPopup({XFile? imageFile, required BuildContext context, dynamic Fu
 void growthImageViewPopup({
   XFile? imageFile,
   required BuildContext context,
-  required TextEditingController controller,
+  Function(String?)? onSelected,
   dynamic Function()? onTap,
 }) async {
+  List<String> dropdownItems = ['1', '2', '3', '4', '5', '6+'];
+  String selectedValue = '1';
+
+  final List<DropdownMenuEntry<String>> monthEntries = <DropdownMenuEntry<String>>[];
+  for (final String month in dropdownItems) {
+    monthEntries.add(
+      DropdownMenuEntry<String>(value: month, label: month.toString()),
+    );
+  }
+
   return showDialog<void>(
     context: context,
     barrierDismissible: false,
@@ -94,11 +105,16 @@ void growthImageViewPopup({
                 child: Image.file(File(imageFile!.path)),
               ),
             ),
-            RoundedTextboxWidget(
-              controller: controller,
-              labelText: 'Months (#)',
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: DropdownMenu<String>(
+                initialSelection: selectedValue,
+                label: const Text(AppStrings.monthsOld),
+                dropdownMenuEntries: monthEntries,
+                enableSearch: false,
+                leadingIcon: const Icon(Icons.calendar_month, color: greenLvl2),
+                onSelected: onSelected,
+              ),
             ),
             CommonButtonWidget(
               text: "Continue",
