@@ -1,3 +1,5 @@
+import 'package:flower_prediction/models/base_api_response.dart';
+import 'package:flower_prediction/utils/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
@@ -36,7 +38,7 @@ class DiseaseViewModel extends ChangeNotifier {
             ..textColor = greenLvl1
             ..dismissOnTap = false;
           EasyLoading.show(status: 'loading...');
-          // process();
+          process();
         },
       );
     }
@@ -45,10 +47,10 @@ class DiseaseViewModel extends ChangeNotifier {
   }
 
   void process() async {
-    // Function(int, int)? onSendProgress;
+    Function(int, int)? onSendProgress;
 
     // BaseAPIResponse response =
-    //     await service.uploadImage(imageFile!, onSendProgress, UrlConstants.getLiveEndpoint());
+    //     await service.predictGrowth(imageFile!,  onSendProgress, UrlConstants.getDiseaseEndpoint());
     // if (response.error) {
     //   EasyLoading.dismiss();
     //   Navigator.pop(NavigationService.navigatorKey.currentContext!);
