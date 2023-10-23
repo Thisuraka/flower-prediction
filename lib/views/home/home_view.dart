@@ -3,6 +3,7 @@ import 'package:flower_prediction/utils/app_strings.dart';
 import 'package:flower_prediction/viewmodels/growth_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/home_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/predict_flower_viewmodel.dart';
+import 'package:flower_prediction/views/disease_detection/disease_detection.dart';
 import 'package:flower_prediction/views/map/vendor_map.dart';
 import 'package:flower_prediction/widgets/home_tile_widget.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +78,12 @@ class _HomeViewState extends State<HomeView> {
                     HomeTileWidget(
                       asset: 'assets/images/home_tile_disease.png',
                       title: AppStrings.diseaseDetection,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const DiseaseDetection()),
+                        );
+                      },
                     ),
                     Consumer<PredictFlowerViewModel>(builder: (context, model, child) {
                       return HomeTileWidget(
