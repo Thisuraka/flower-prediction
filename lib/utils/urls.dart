@@ -10,4 +10,12 @@ class UrlConstants {
       return "https://identifytype-w2qyntknzq-uc.a.run.app/disease-identification";
     }
   }
+
+  static String getGrowthEndpoint() {
+    if (environment == "development") {
+      return "$baseUrl/growth_classify";
+    } else {
+      return "https://identifytype-w2qyntknzq-uc.a.run.app/growth_classify";
+    }
+  }
 }

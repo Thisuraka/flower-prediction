@@ -7,4 +7,5 @@ class AppStrings {
   static const monthsOld = "Months old";
   static const detectedDisease = "Detected Disease";
   static const treatment = "Treatment";
+  static const growthAnalysis = "Growth Analysis";
 }

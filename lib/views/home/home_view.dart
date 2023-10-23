@@ -35,8 +35,8 @@ class _HomeViewState extends State<HomeView> {
             ),
             gradient: LinearGradient(
               colors: [
-                Color(0xFF6A9976),
-                Color(0xFF6E8772),
+                Color(0xFF597961),
+                Color(0xFF64856A),
               ],
               begin: FractionalOffset(0.0, 0.0),
               end: FractionalOffset(1.0, 0.0),
@@ -63,6 +63,10 @@ class _HomeViewState extends State<HomeView> {
                   labels: const [
                     'Camera',
                     'Gallery',
+                  ],
+                  customTextStyles: const [
+                    TextStyle(fontWeight: FontWeight.w700),
+                    TextStyle(fontWeight: FontWeight.w700)
                   ],
                   onToggle: (index) {
                     index == 0 ? homeModel.isCamera = true : homeModel.isCamera = false;
@@ -114,7 +118,7 @@ class _HomeViewState extends State<HomeView> {
                       },
                     ),
                   ],
-                ))
+                )),
               ],
             );
           }),

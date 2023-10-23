@@ -111,7 +111,15 @@ void growthImageViewPopup({
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: DropdownMenu<String>(
                 initialSelection: selectedValue,
-                label: const Text(AppStrings.monthsOld),
+                label: const Text(
+                  AppStrings.monthsOld,
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+                textStyle: const TextStyle(
+                  color: Colors.black,
+                ),
                 dropdownMenuEntries: monthEntries,
                 enableSearch: false,
                 leadingIcon: const Icon(Icons.calendar_month, color: greenLvl2),

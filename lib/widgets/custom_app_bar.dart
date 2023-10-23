@@ -25,8 +25,8 @@ class CustomAppBar extends StatelessWidget {
               ? null
               : const LinearGradient(
                   colors: [
-                    Color(0xFF6A9976),
-                    Color(0xFF6E8772),
+                    Color(0xFF35553D),
+                    Color(0xFF496B4F),
                   ],
                   begin: FractionalOffset(0.0, 0.0),
                   end: FractionalOffset(1.0, 0.0),
