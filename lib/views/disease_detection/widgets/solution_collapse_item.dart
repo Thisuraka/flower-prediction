@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 
-class SolutionCollapseItem extends StatelessWidget {
-  const SolutionCollapseItem({super.key, required this.icon, required this.title, required this.contentWidget});
+class TreatmentAccordionWidget extends StatelessWidget {
+  const TreatmentAccordionWidget({super.key, this.icon, required this.title, required this.contentWidget});
 
-  final IconData icon;
+  final Icon? icon;
   final String title;
   final Widget contentWidget;
 
   @override
   Widget build(BuildContext context) {
-    return  ExpansionTile(
+    return ExpansionTile(
       collapsedIconColor: Colors.white,
       iconColor: Colors.white,
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            icon,
-            color: Colors.white,
-            size: 24.0,
-          ),
           const SizedBox(
             width: 10.0,
           ),
@@ -30,9 +25,7 @@ class SolutionCollapseItem extends StatelessWidget {
         ],
       ),
       // subtitle: Text('Trailing expansion arrow icon'),
-      children: <Widget>[
-        contentWidget
-      ],
+      children: <Widget>[contentWidget],
     );
   }
 }

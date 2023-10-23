@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flower_prediction/utils/app_strings.dart';
+import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -41,6 +41,9 @@ void imageViewPopup({XFile? imageFile, required BuildContext context, dynamic Fu
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.file(File(imageFile!.path)),
               ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             CommonButtonWidget(
               text: "Continue",

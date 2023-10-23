@@ -42,12 +42,9 @@ class Network {
   }
 
   static Future<BaseAPIResponse> upload(
-      {
-      required FormData formData,
+      {required FormData formData,
       required String endpoint,
       required Function(int, int)? onSendProgress}) async {
-
-
     Dio dio = Dio();
     dio.options.connectTimeout = const Duration(seconds: 20);
 
@@ -58,7 +55,7 @@ class Network {
         onSendProgress: onSendProgress,
       );
 
-      return BaseAPIResponse(data: response.data, error: false, status: response.statusCode);
+      return BaseAPIResponse(data: response.data['data'], error: false, status: response.statusCode);
     } on DioException catch (e) {
       return BaseAPIResponse(data: null, error: true, status: e.response?.statusCode);
     }

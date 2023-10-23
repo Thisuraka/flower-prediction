@@ -17,4 +17,17 @@ class FlowerService {
         await Network.upload(formData: formData, endpoint: endpoint, onSendProgress: onSendProgress);
     return response;
   }
+
+  Future<BaseAPIResponse> predictDisease(
+      XFile imageFile, Function(int, int)? onSendProgress, String endpoint) async {
+    FormData formData = FormData.fromMap({
+      "image_path": await MultipartFile.fromFile(
+        imageFile.path,
+        filename: imageFile.name,
+      )
+    });
+    BaseAPIResponse response =
+        await Network.upload(formData: formData, endpoint: endpoint, onSendProgress: onSendProgress);
+    return response;
+  }
 }

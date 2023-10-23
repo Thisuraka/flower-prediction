@@ -1,5 +1,10 @@
 import 'package:flower_prediction/models/base_api_response.dart';
+import 'package:flower_prediction/models/disease_model.dart';
+import 'package:flower_prediction/utils/navigation_service.dart';
+import 'package:flower_prediction/utils/static/diseases_static.dart';
 import 'package:flower_prediction/utils/urls.dart';
+import 'package:flower_prediction/utils/utils.dart';
+import 'package:flower_prediction/views/disease_detection/disease_detection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,6 +16,7 @@ import 'package:flower_prediction/widgets/popups/image_view_popup.dart';
 
 class DiseaseViewModel extends ChangeNotifier {
   final FlowerService service = FlowerService();
+  DiseaseModel diseaseModel = DiseaseModel();
 
   XFile? imageFile;
   bool isGen = false;
@@ -49,22 +55,27 @@ class DiseaseViewModel extends ChangeNotifier {
   void process() async {
     Function(int, int)? onSendProgress;
 
-    // BaseAPIResponse response =
-    //     await service.predictGrowth(imageFile!,  onSendProgress, UrlConstants.getDiseaseEndpoint());
-    // if (response.error) {
-    //   EasyLoading.dismiss();
-    //   Navigator.pop(NavigationService.navigatorKey.currentContext!);
-    //   Utils.showSnackBar(
-    //       'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
-    // } else {
-    //   Navigator.of(NavigationService.navigatorKey.currentContext!)
-    //           .push(MaterialPageRoute(builder: (context) => const ));
-    //   } catch (e) {
-    //     EasyLoading.dismiss();
-    //     Navigator.pop(NavigationService.navigatorKey.currentContext!);
-    //     Utils.showSnackBar('Something went wrong', NavigationService.navigatorKey.currentContext!);
-    //   }
-    // }
+    BaseAPIResponse response =
+        await service.predictDisease(imageFile!, onSendProgress, UrlConstants.getDiseaseEndpoint());
+    if (response.error) {
+      EasyLoading.dismiss();
+      Navigator.pop(NavigationService.navigatorKey.currentContext!);
+      Utils.showSnackBar(
+          'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
+    } else {
+      try {
+        EasyLoading.dismiss();
+        // diseaseModel = diseaseStatic.firstWhere((element) => element.key == response.data['predicted_class']);
+        diseaseModel = diseaseStatic.firstWhere((element) => element.key == "Black_rot_Stage_1");
+        Navigator.pop(NavigationService.navigatorKey.currentContext!);
+        Navigator.of(NavigationService.navigatorKey.currentContext!)
+            .push(MaterialPageRoute(builder: (context) => const DiseaseDetection()));
+      } catch (e) {
+        EasyLoading.dismiss();
+        Navigator.pop(NavigationService.navigatorKey.currentContext!);
+        Utils.showSnackBar('Something went wrong', NavigationService.navigatorKey.currentContext!);
+      }
+    }
   }
 }
 

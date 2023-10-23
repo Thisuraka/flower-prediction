@@ -8,7 +8,7 @@ class HomeViewModel extends ChangeNotifier {
 
   XFile? imageFile;
   bool isGen = false;
-  bool isCamera = true;
+  bool isCamera = false;
 
   void setGen() {
     isGen = !isGen;

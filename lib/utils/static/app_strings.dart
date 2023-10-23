@@ -5,4 +5,5 @@ class AppStrings {
   static const plantGrowth = "Plant\nGrowth";
   static const vendorProximity = "Vendor\nProximity";
   static const monthsOld = "Months old";
+  static const detectedDisease = "Detected Disease";
 }

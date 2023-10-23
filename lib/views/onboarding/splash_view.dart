@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:flower_prediction/utils/app_strings.dart';
+import 'package:flower_prediction/utils/static/app_assets.dart';
+import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
@@ -30,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
         padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/splash_bg.png"),
+            image: AssetImage(AppAssets.splash),
             fit: BoxFit.cover,
           ),
         ),
@@ -44,7 +45,7 @@ class _SplashViewState extends State<SplashView> {
               const SizedBox(
                 height: 80,
               ),
-              Image.asset('assets/images/logo.png'),
+              Image.asset(AppAssets.logo),
               const Text(
                 AppStrings.splashDesc,
                 textAlign: TextAlign.center,

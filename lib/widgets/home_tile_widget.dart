@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flower_prediction/style.dart';
+import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flutter/material.dart';
 
 class HomeTileWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class HomeTileWidget extends StatelessWidget {
         decoration: BoxDecoration(
           image: const DecorationImage(
             alignment: Alignment.bottomCenter,
-            image: AssetImage("assets/images/home_tile.png"),
+            image: AssetImage(AppAssets.homeTile),
             fit: BoxFit.contain,
           ),
           color: greenLvl2,
@@ -46,8 +47,7 @@ class HomeTileWidget extends StatelessWidget {
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
             ),
           ),
           Flexible(

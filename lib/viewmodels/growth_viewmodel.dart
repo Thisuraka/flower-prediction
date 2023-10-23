@@ -25,7 +25,7 @@ class GrowthViewModel extends ChangeNotifier {
     } else {
       imageFile = await CameraHelper.selectImages();
     }
-    
+
     if (context.mounted) {
       growthImageViewPopup(
         imageFile: imageFile,
@@ -53,7 +53,7 @@ class GrowthViewModel extends ChangeNotifier {
     // Function(int, int)? onSendProgress;
 
     // BaseAPIResponse response =
-    //     await service.uploadImage(imageFile!, onSendProgress, UrlConstants.getLiveEndpoint());
+    //     await service.predictGrowth(imageFile!,  onSendProgress, UrlConstants.getDiseaseEndpoint());
     // if (response.error) {
     //   EasyLoading.dismiss();
     //   Navigator.pop(NavigationService.navigatorKey.currentContext!);
