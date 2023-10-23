@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/viewmodels/disease_viewmodel.dart';
-import 'package:flower_prediction/views/disease_detection/widgets/solution_collapse_item.dart';
+import 'package:flower_prediction/views/disease_detection/widgets/treatment_accordion_widget.dart';
 import 'package:flower_prediction/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -65,45 +65,31 @@ class DiseaseDetection extends StatelessWidget {
                       child: Image.file(File(model.imageFile!.path)),
                     ),
                   ),
-
+                  Text(
+                    model.diseaseModel.disease!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 20.0, color: Colors.white),
+                  ),
                   const SizedBox(
                     height: 20.0,
                   ),
-                  //Disease title
-                  Text(
-                    model.diseaseModel.disease!,
-                    textAlign: TextAlign.start,
-                    style: const TextStyle(fontSize: 20.0, color: Colors.white),
-                  ),
-                  //Disease description
                   Text(
                     model.diseaseModel.description!,
                     textAlign: TextAlign.justify,
                     style: const TextStyle(color: Colors.white),
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  // Text(
-                  //   model.diseaseModel.description2!,
-                  //   textAlign: TextAlign.justify,
-                  //   style: const TextStyle(color: Colors.white),
-                  // ),
+
                   const SizedBox(
                     height: 20.0,
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.2,
+                    height: MediaQuery.of(context).size.height * 0.5,
                     child: ListView.builder(
                       itemCount: model.diseaseModel.treatmentPlan!.length,
                       itemBuilder: (context, index) {
-                        return const TreatmentAccordionWidget(
-                          title: 'Isolation',
-                          contentWidget: ListTile(
-                              title: Text(
-                            'Immediately identify and isolate infected plants. Remove and destroy any plants showing symptoms of black rot to prevent the spread of the disease to healthy plants',
-                            style: TextStyle(color: Colors.white),
-                          )),
+                        return TreatmentAccordionWidget(
+                          title: model.diseaseModel.treatmentPlan![index]!.plan!,
+                          content: model.diseaseModel.treatmentPlan![index]!.desc!,
                         );
                       },
                     ),

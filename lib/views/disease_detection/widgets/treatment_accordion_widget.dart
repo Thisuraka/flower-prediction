@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TreatmentAccordionWidget extends StatelessWidget {
-  const TreatmentAccordionWidget({super.key, this.icon, required this.title, required this.contentWidget});
+  const TreatmentAccordionWidget({super.key, this.icon, required this.title, required this.content});
 
   final Icon? icon;
   final String title;
-  final Widget contentWidget;
+  final String content;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,15 @@ class TreatmentAccordionWidget extends StatelessWidget {
           )
         ],
       ),
-      // subtitle: Text('Trailing expansion arrow icon'),
-      children: <Widget>[contentWidget],
+      children: <Widget>[
+        ListTile(
+          title: Text(
+            content,
+            textAlign: TextAlign.justify,
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w300),
+          ),
+        ),
+      ],
     );
   }
 }
