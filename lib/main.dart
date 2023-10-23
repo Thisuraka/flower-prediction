@@ -1,3 +1,4 @@
+import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/navigation_service.dart';
 import 'package:flower_prediction/viewmodels/disease_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/growth_viewmodel.dart';
@@ -36,8 +37,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: NavigationService.navigatorKey,
-      theme: ThemeData(
+      theme: ThemeData(      fontFamily: 'Nunito',
         useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: greenLvl1,
+          brightness: Brightness.dark,
+        ),
       ),
       home: const SplashView(),
       builder: EasyLoading.init(),

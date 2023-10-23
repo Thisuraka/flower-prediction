@@ -34,3 +34,9 @@ flutter:
 
   assets:
     - assets/images/
+
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/Nunito-VariableFont_wght.ttf

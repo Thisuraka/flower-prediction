@@ -15,7 +15,11 @@ class DiseaseDetection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(35.0), child: CustomAppBar(title: AppStrings.detectedDisease)),
+          preferredSize: Size.fromHeight(35.0),
+          child: CustomAppBar(
+            title: AppStrings.detectedDisease,
+            removeBg: true,
+          )),
       body: Container(
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
@@ -23,80 +27,82 @@ class DiseaseDetection extends StatelessWidget {
             image: AssetImage(AppAssets.homeBg),
             fit: BoxFit.cover,
           ),
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF6A9976),
-              Color(0xFF6E8772),
-            ],
-            begin: FractionalOffset(0.0, 0.0),
-            end: FractionalOffset(1.0, 0.0),
-            stops: [0.0, 1.0],
-            tileMode: TileMode.clamp,
-          ),
         ),
         child: Consumer<DiseaseViewModel>(builder: (context, model, child) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  //Flower image
-                  Container(
-                    height: MediaQuery.of(context).size.height / 4,
-                    margin: const EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 2),
+          return CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                expandedHeight: MediaQuery.of(context).size.height * 0.6,
+                backgroundColor: Colors.transparent,
+                foregroundColor: Colors.transparent,
+                floating: false,
+                pinned: false,
+                snap: false,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.2,
+                          margin: const EdgeInsets.only(top: 20),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image.file(File(model.imageFile!.path)),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Text(
+                          model.diseaseModel.disease!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 22.0, color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Text(
+                          model.diseaseModel.description!,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        const Text(
+                          AppStrings.treatment,
+                          style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20.0),
-                      child: Image.file(File(model.imageFile!.path)),
-                    ),
                   ),
-                  Text(
-                    model.diseaseModel.disease!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 20.0, color: Colors.white),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    model.diseaseModel.description!,
-                    textAlign: TextAlign.justify,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    child: ListView.builder(
-                      itemCount: model.diseaseModel.treatmentPlan!.length,
-                      itemBuilder: (context, index) {
-                        return TreatmentAccordionWidget(
-                          title: model.diseaseModel.treatmentPlan![index]!.plan!,
-                          content: model.diseaseModel.treatmentPlan![index]!.desc!,
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+                  return TreatmentAccordionWidget(
+                    title: model.diseaseModel.treatmentPlan![index]!.plan!,
+                    content: model.diseaseModel.treatmentPlan![index]!.desc!,
+                  );
+                }, childCount: model.diseaseModel.treatmentPlan!.length),
+              ),
+            ],
           );
         }),
       ),

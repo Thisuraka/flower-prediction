@@ -20,7 +20,7 @@ class TreatmentAccordionWidget extends StatelessWidget {
           ),
           Text(
             title,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           )
         ],
       ),
