@@ -114,7 +114,7 @@ List<DiseaseModel> diseaseStatic = [
   ),
   DiseaseModel(
     key: "Blight_Stage_1",
-    disease: "",
+    disease: "Blight leaf disease stage 1",
     description: "",
     description2: "",
     treatmentPlan: {
@@ -162,7 +162,7 @@ List<DiseaseModel> diseaseStatic = [
   ),
   DiseaseModel(
     key: "Blight_Stage_2",
-    disease: "",
+    disease: "Blight leaf disease stage 2",
     description: "",
     description2: "",
     treatmentPlan: {
@@ -210,7 +210,7 @@ List<DiseaseModel> diseaseStatic = [
   ),
   DiseaseModel(
     key: "Healthy",
-    disease: "",
+    disease: "Healthy",
     description: "",
     description2: "",
     treatmentPlan: {
@@ -258,7 +258,7 @@ List<DiseaseModel> diseaseStatic = [
   ),
   DiseaseModel(
     key: "Scab_Stage_1",
-    disease: "",
+    disease: "Scab leaf disease Stage 1",
     description: "",
     description2: "",
     treatmentPlan: {
@@ -306,7 +306,7 @@ List<DiseaseModel> diseaseStatic = [
   ),
   DiseaseModel(
     key: "Scab_Stage_2",
-    disease: "",
+    disease: "Scab leaf disease Stage 2",
     description: "",
     description2: "",
     treatmentPlan: {

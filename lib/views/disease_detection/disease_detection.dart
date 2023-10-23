@@ -32,7 +32,7 @@ class DiseaseDetection extends StatelessWidget {
           return CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
-                expandedHeight: MediaQuery.of(context).size.height * 0.6,
+                expandedHeight: MediaQuery.of(context).size.height * 0.8,
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.transparent,
                 floating: false,
@@ -79,6 +79,14 @@ class DiseaseDetection extends StatelessWidget {
                         ),
                         Text(
                           model.diseaseModel.description!,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Text(
+                          model.diseaseModel.description2!,
                           textAlign: TextAlign.justify,
                           style: const TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
                         ),

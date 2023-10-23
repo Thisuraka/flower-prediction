@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
-import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +24,7 @@ class HomeTileWidget extends StatelessWidget {
             image: AssetImage(AppAssets.homeTile),
             fit: BoxFit.contain,
           ),
-          color: greenLvl2,
+          color: const Color(0x622B5E37),
           borderRadius: const BorderRadius.all(
             Radius.circular(20),
           ),
@@ -35,7 +32,7 @@ class HomeTileWidget extends StatelessWidget {
             BoxShadow(
               color: Colors.white.withOpacity(0.4),
               spreadRadius: 1,
-              blurRadius: 2,
+              blurRadius: 3,
               blurStyle: BlurStyle.normal,
               offset: const Offset(0, 2),
             ),
