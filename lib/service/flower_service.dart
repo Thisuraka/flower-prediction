@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flower_prediction/models/base_api_response.dart';
 import 'package:flower_prediction/network/network.dart';
+import 'package:flower_prediction/utils/enums/request_types.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FlowerService {
@@ -28,6 +29,13 @@ class FlowerService {
     });
     BaseAPIResponse response =
         await Network.upload(formData: formData, endpoint: endpoint, onSendProgress: onSendProgress);
+    return response;
+  }
+
+  Future<BaseAPIResponse> predictFlower(String location, String endpoint) async {
+    Map<String, dynamic> body = {"location": location};
+
+    BaseAPIResponse response = await Network.request(method: RequestType.post, url: endpoint, body: body);
     return response;
   }
 }

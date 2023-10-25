@@ -18,4 +18,12 @@ class UrlConstants {
       return "https://identifytype-w2qyntknzq-uc.a.run.app/growth_classify";
     }
   }
+
+  static String getFlowerEndpoint() {
+    if (environment == "development") {
+      return "$baseUrl/suggest-flower";
+    } else {
+      return "https://identifytype-w2qyntknzq-uc.a.run.app/suggest-flower";
+    }
+  }
 }

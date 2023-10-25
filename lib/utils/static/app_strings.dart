@@ -8,4 +8,8 @@ class AppStrings {
   static const detectedDisease = "Detected Disease";
   static const treatment = "Treatment";
   static const growthAnalysis = "Growth Analysis";
+  static const plantGrowthPrediction = "Plant Growth Prediction";
+  static const plantGrowthPredictionDesc = "Click continue to find the growth conditions and fertilizer plans";
+  static const plantDiseasePrediction = "Plant Disease Prediction";
+  static const plantDiseasePredictionDesc = "Click continue to find the disease staus";
 }

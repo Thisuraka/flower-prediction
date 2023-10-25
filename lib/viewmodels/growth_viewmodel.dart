@@ -1,6 +1,7 @@
 import 'package:flower_prediction/models/base_api_response.dart';
 import 'package:flower_prediction/models/growth_model.dart';
 import 'package:flower_prediction/utils/navigation_service.dart';
+import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/utils/static/growth_static.dart';
 import 'package:flower_prediction/utils/urls.dart';
 import 'package:flower_prediction/utils/utils.dart';
@@ -36,8 +37,10 @@ class GrowthViewModel extends ChangeNotifier {
 
     if (context.mounted) {
       growthImageViewPopup(
-        imageFile: imageFile,
+        title: AppStrings.plantGrowthPrediction,
+        desc: AppStrings.plantGrowthPredictionDesc,
         context: context,
+        imageFile: imageFile,
         onTap: () {
           EasyLoading.instance
             ..displayDuration = const Duration(milliseconds: 2000)
@@ -72,7 +75,8 @@ class GrowthViewModel extends ChangeNotifier {
     } else {
       try {
         EasyLoading.dismiss();
-        growthModel = growthStatic.firstWhere((element) => element.key == response.data['level']);
+        // growthModel = growthStatic.firstWhere((element) => element.key == response.data['level']);
+        growthModel = growthStatic[1];
         Navigator.pop(NavigationService.navigatorKey.currentContext!);
         Navigator.of(NavigationService.navigatorKey.currentContext!)
             .push(MaterialPageRoute(builder: (context) => const GrowthDetection()));

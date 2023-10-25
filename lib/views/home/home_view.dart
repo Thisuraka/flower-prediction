@@ -35,8 +35,8 @@ class _HomeViewState extends State<HomeView> {
             ),
             gradient: LinearGradient(
               colors: [
-                Color(0xFF597961),
-                Color(0xFF64856A),
+                Color(0xFF4E6153),
+                Color(0xFF496B4F),
               ],
               begin: FractionalOffset(0.0, 0.0),
               end: FractionalOffset(1.0, 0.0),

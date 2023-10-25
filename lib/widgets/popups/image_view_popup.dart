@@ -7,7 +7,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/widgets/common_button_widget.dart';
 
-void imageViewPopup({XFile? imageFile, required BuildContext context, dynamic Function()? onTap}) async {
+void imageViewPopup(
+    {String? title,
+    String? desc,
+    XFile? imageFile,
+    required BuildContext context,
+    dynamic Function()? onTap}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false,
@@ -16,7 +21,7 @@ void imageViewPopup({XFile? imageFile, required BuildContext context, dynamic Fu
         elevation: 0.0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Container(
-          height: MediaQuery.of(context).size.height / 2.5,
+          height: MediaQuery.of(context).size.height * 0.5,
           padding: const EdgeInsets.all(10.0),
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -32,6 +37,21 @@ void imageViewPopup({XFile? imageFile, required BuildContext context, dynamic Fu
                 color: greenLvl1,
                 size: 30,
               ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              title ?? "",
+              style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              desc ?? "",
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
             ),
             Container(
               width: MediaQuery.of(context).size.width / 2,
@@ -58,6 +78,8 @@ void imageViewPopup({XFile? imageFile, required BuildContext context, dynamic Fu
 }
 
 void growthImageViewPopup({
+  String? title,
+  String? desc,
   XFile? imageFile,
   required BuildContext context,
   Function(String?)? onSelected,
@@ -81,11 +103,11 @@ void growthImageViewPopup({
         elevation: 0.0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Container(
-          height: MediaQuery.of(context).size.height / 2.0,
+          height: MediaQuery.of(context).size.height * 0.6,
           padding: const EdgeInsets.all(10.0),
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
-            color: Colors.white,
+            color: Color(0xFFE2E2E2),
           ),
           child: Column(children: [
             GestureDetector(
@@ -97,6 +119,21 @@ void growthImageViewPopup({
                 color: greenLvl1,
                 size: 30,
               ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              title ?? "",
+              style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              desc ?? "",
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
             ),
             Container(
               width: MediaQuery.of(context).size.width / 2,
