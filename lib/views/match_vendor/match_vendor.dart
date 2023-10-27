@@ -1,6 +1,11 @@
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/static/app_assets.dart';
+import 'package:flower_prediction/utils/static/app_strings.dart';
+import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
+import 'package:flower_prediction/widgets/custom_app_bar.dart';
+import 'package:flower_prediction/widgets/rounded_textbox_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MatchVendor extends StatelessWidget {
   const MatchVendor({super.key});
@@ -8,54 +13,56 @@ class MatchVendor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Match Vendor'),
-        actions: const <Widget>[],
-      ),
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(35.0),
+          child: CustomAppBar(
+            title: "",
+            removeBg: true,
+          )),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         padding: const EdgeInsets.only(top: 50),
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AppAssets.homeBg),
-            fit: BoxFit.cover,
-          ),
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF4E6153),
-              Color(0xFF496B4F),
-            ],
-            begin: FractionalOffset(0.0, 0.0),
-            end: FractionalOffset(1.0, 0.0),
-            stops: [0.0, 1.0],
-            tileMode: TileMode.clamp,
-          ),
-        ),
+            image: DecorationImage(
+              image: AssetImage(AppAssets.homeBg),
+              fit: BoxFit.cover,
+            ),
+            color: Colors.transparent),
         child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Match your vendor from here',
+          child: Consumer<VendorViewModel>(builder: (context, model, child) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: RoundedTextboxWidget(
+                    controller: model.selectedVendor,
+                    labelText: AppStrings.plantPredictionEnterGrowTimePeriod,
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return AppStrings.enterValues;
+                      }
+                      return null;
+                    },
                   ),
                 ),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 20), backgroundColor: greenLvl1),
-                onPressed: () {},
-                child: const Text(
-                  'Proceed',
-                  style: TextStyle(color: Colors.white),
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-            ],
-          ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      textStyle: const TextStyle(fontSize: 20), backgroundColor: greenLvl1),
+                  onPressed: () {},
+                  child: const Text(
+                    AppStrings.next,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            );
+          }),
         ),
       ),
     );

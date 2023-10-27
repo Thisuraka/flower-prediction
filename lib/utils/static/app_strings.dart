@@ -24,4 +24,6 @@ class AppStrings {
   static const plantPredictionWeatherPrediction = "Weather Prediction";
   static const plantPredictionMostSuitablePlant = "Most Suitable Plant";
   static const plantPredictionMostPickWhich = "Please pick what you would like to predict";
+
+  
 }

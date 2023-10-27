@@ -4,6 +4,7 @@ import 'package:flower_prediction/viewmodels/disease_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/growth_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/home_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/predict_flower_viewmodel.dart';
+import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
 import 'package:flower_prediction/views/onboarding/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -24,6 +25,9 @@ void main() {
       ChangeNotifierProvider(
         create: ((context) => GrowthViewModel()),
       ),
+      ChangeNotifierProvider(
+        create: ((context) => VendorViewModel()),
+      ),
     ],
     child: const MyApp(),
   ));
@@ -37,7 +41,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: NavigationService.navigatorKey,
-      theme: ThemeData(      fontFamily: 'Nunito',
+      theme: ThemeData(
+        fontFamily: 'Nunito',
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: greenLvl1,

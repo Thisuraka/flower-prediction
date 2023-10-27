@@ -1,14 +1,9 @@
-import 'package:flower_prediction/models/base_api_response.dart';
 import 'package:flower_prediction/service/flower_service.dart';
 import 'package:flower_prediction/utils/navigation_service.dart';
-import 'package:flower_prediction/utils/urls.dart';
-import 'package:flower_prediction/utils/utils.dart';
 import 'package:flower_prediction/views/predict_flower/predict_flower.dart';
 import 'package:flower_prediction/views/predict_flower/weather_prediction.dart';
 import 'package:flower_prediction/widgets/popups/image_view_popup.dart';
-import 'package:flower_prediction/widgets/switchable_block.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PredictFlowerViewModel extends ChangeNotifier {
   final FlowerService service = FlowerService();

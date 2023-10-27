@@ -2,13 +2,11 @@ import 'dart:io';
 
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/widgets/rounded_textbox_widget.dart';
-import 'package:flower_prediction/widgets/switchable_block.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/widgets/common_button_widget.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 void imageViewPopup(
     {String? title,

@@ -1,7 +1,6 @@
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
-import 'package:flower_prediction/viewmodels/home_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/predict_flower_viewmodel.dart';
 import 'package:flower_prediction/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
