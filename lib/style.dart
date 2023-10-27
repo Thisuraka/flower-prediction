@@ -18,6 +18,6 @@ const greenLvl8 = Color(0xFFD4E6DF);
 //Fonts and text
 const labelStyle = TextStyle(color: Colors.black26, fontWeight: FontWeight.w500, fontSize: 15.0);
 
-const hintStyle = TextStyle(color: Colors.black26, fontWeight: FontWeight.w500, fontSize: 13.0);
+const hintStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 13.0);
 
 const topicStyle = TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 25.0);

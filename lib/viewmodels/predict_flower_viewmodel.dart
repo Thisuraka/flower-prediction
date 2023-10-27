@@ -1,96 +1,66 @@
+import 'package:flower_prediction/models/base_api_response.dart';
 import 'package:flower_prediction/service/flower_service.dart';
-import 'package:flower_prediction/style.dart';
+import 'package:flower_prediction/utils/navigation_service.dart';
+import 'package:flower_prediction/utils/urls.dart';
+import 'package:flower_prediction/utils/utils.dart';
 import 'package:flower_prediction/views/predict_flower/predict_flower.dart';
+import 'package:flower_prediction/views/predict_flower/weather_prediction.dart';
+import 'package:flower_prediction/widgets/popups/image_view_popup.dart';
+import 'package:flower_prediction/widgets/switchable_block.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PredictFlowerViewModel extends ChangeNotifier {
   final FlowerService service = FlowerService();
 
-  String selectedMonthForGrowth = "";
+  final formKey = GlobalKey<FormState>();
+  String? farmerLocation;
+  bool isWeather = true;
+  TextEditingController soilPhValueController = TextEditingController();
+  TextEditingController growingTimePeriodController = TextEditingController();
 
   Future<void> addInputs(BuildContext context) async {
-    if (context.mounted) {
-      showModalBottomSheet<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Text(
-                  'Enter Plant Details',
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter farmer location',
-                    ),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter soil pH value',
-                    ),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter growing time period',
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      textStyle: const TextStyle(fontSize: 20), backgroundColor: greenLvl1),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const PredictFlower()),
-                    );
-                  },
-                  child: const Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      );
-    }
+    soilPhValueController.clear();
+    growingTimePeriodController.clear();
+
+    predictFlowerPopup(
+      soilPhValueController: soilPhValueController,
+      growingTimePeriodController: growingTimePeriodController,
+      context: context,
+      formKey: formKey,
+      onSelected: (value) {
+        farmerLocation = value;
+      },
+      onConfirm: () {
+        if (formKey.currentState!.validate()) {
+          Navigator.pop(context);
+
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PredictFlower()));
+        }
+      },
+    );
   }
 
-  void process() async {
-    // Function(int, int)? onSendProgress;
-
-    // BaseAPIResponse response =
-    //     await service.uploadImage(imageFile!, onSendProgress, UrlConstants.getLiveEndpoint());
-    // if (response.error) {
+  void processMostSuitablePlant() async {
+    Navigator.of(NavigationService.navigatorKey.currentContext!)
+        .push(MaterialPageRoute(builder: (context) => WeatherPrediction()));
+    // try {
+    //   Map<String, dynamic> body = {
+    //     "location": farmerLocation,
+    //     'time_period': growingTimePeriodController,
+    //     'ph_value': soilPhValueController
+    //   };
+    //   BaseAPIResponse response = await service.predictFlower(UrlConstants.getFlowerEndpoint(), body);
+    //   if (response.error) {
+    //     Utils.showSnackBar(
+    //         'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
+    //   } else {
+    //     print(response);
+    //   }
+    // } catch (e) {
     //   EasyLoading.dismiss();
     //   Navigator.pop(NavigationService.navigatorKey.currentContext!);
-    //   Utils.showSnackBar(
-    //       'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
-    // } else {
-    //   Navigator.of(NavigationService.navigatorKey.currentContext!)
-    //           .push(MaterialPageRoute(builder: (context) => const ));
-    //   } catch (e) {
-    //     EasyLoading.dismiss();
-    //     Navigator.pop(NavigationService.navigatorKey.currentContext!);
-    //     Utils.showSnackBar('Something went wrong', NavigationService.navigatorKey.currentContext!);
-    //   }
+    //   Utils.showSnackBar('Something went wrong', NavigationService.navigatorKey.currentContext!);
     // }
   }
 }

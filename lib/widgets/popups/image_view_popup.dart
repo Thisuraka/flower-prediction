@@ -1,11 +1,14 @@
 import 'dart:io';
 
 import 'package:flower_prediction/utils/static/app_strings.dart';
+import 'package:flower_prediction/widgets/rounded_textbox_widget.dart';
+import 'package:flower_prediction/widgets/switchable_block.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/widgets/common_button_widget.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 void imageViewPopup(
     {String? title,
@@ -173,4 +176,102 @@ void growthImageViewPopup({
       );
     },
   );
+}
+
+void predictFlowerPopup({
+  required TextEditingController soilPhValueController,
+  required TextEditingController growingTimePeriodController,
+  required BuildContext context,
+  required GlobalKey formKey,
+  required Function(String?) onSelected,
+  required dynamic Function() onConfirm,
+}) async {
+  List<String> dropdownItems = ['Colombo', 'Badulla', 'Hatton', 'Kalutara', 'Kandy', 'Mount Lavinia'];
+  String selectedValue = 'Colombo';
+
+  final List<DropdownMenuEntry<String>> locationEntries = <DropdownMenuEntry<String>>[];
+  for (final String month in dropdownItems) {
+    locationEntries.add(
+      DropdownMenuEntry<String>(value: month, label: month.toString()),
+    );
+  }
+
+  if (context.mounted) {
+    showModalBottomSheet<void>(
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Form(
+          key: formKey,
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  AppStrings.plantPredictionEnterDetails,
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: DropdownMenu<String>(
+                    width: MediaQuery.of(context).size.width - 20,
+                    initialSelection: selectedValue,
+                    label: const Text(
+                      AppStrings.plantPredictionEnterFarmerLocation,
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                    ),
+                    dropdownMenuEntries: locationEntries,
+                    enableSearch: false,
+                    leadingIcon: const Icon(Icons.location_on, color: greenLvl2),
+                    onSelected: onSelected,
+                  ),
+                ),
+                RoundedTextboxWidget(
+                  controller: soilPhValueController,
+                  labelText: AppStrings.plantPredictionEnterSoilPh,
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return AppStrings.enterValues;
+                    }
+                    return null;
+                  },
+                ),
+                RoundedTextboxWidget(
+                  controller: growingTimePeriodController,
+                  labelText: AppStrings.plantPredictionEnterGrowTimePeriod,
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return AppStrings.enterValues;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      textStyle: const TextStyle(fontSize: 20), backgroundColor: greenLvl1),
+                  onPressed: onConfirm,
+                  child: const Text(
+                    AppStrings.next,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }

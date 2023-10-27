@@ -34,19 +34,10 @@ class RoundedTextboxWidget extends StatelessWidget {
     ),
   );
 
-  static InputBorder errorBorder = const OutlineInputBorder(borderSide: BorderSide(color: Colors.red));
-  static InputBorder border = OutlineInputBorder(
-    borderRadius: BorderRadius.circular(8),
-    borderSide: const BorderSide(
-      width: 0,
-      style: BorderStyle.none,
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 60,
       width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.symmetric(vertical: verticalMargin),
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0.0),
@@ -67,7 +58,7 @@ class RoundedTextboxWidget extends StatelessWidget {
         cursorHeight: 15,
         textAlign: textAlign,
         decoration: InputDecoration(
-          border: border,
+          border: const OutlineInputBorder(),
           labelText: labelText,
           enabled: enabled,
           labelStyle: hintStyle,
