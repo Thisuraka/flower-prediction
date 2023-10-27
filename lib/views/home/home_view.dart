@@ -5,7 +5,7 @@ import 'package:flower_prediction/viewmodels/disease_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/growth_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/home_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/predict_flower_viewmodel.dart';
-import 'package:flower_prediction/views/map/vendor_map.dart';
+import 'package:flower_prediction/views/match_vendor/match_vendor.dart';
 import 'package:flower_prediction/widgets/home_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -111,9 +111,13 @@ class _HomeViewState extends State<HomeView> {
                       asset: AppAssets.homeTileProximity,
                       title: AppStrings.vendorProximity,
                       onTap: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => const VendorMap()),
+                        // );
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const VendorMap()),
+                          MaterialPageRoute(builder: (context) => const MatchVendor()),
                         );
                       },
                     ),
