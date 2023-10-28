@@ -3,6 +3,7 @@ import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
 import 'package:flower_prediction/widgets/custom_app_bar.dart';
+import 'package:flower_prediction/widgets/vendor_expanding_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ class ClosestVendors extends StatelessWidget {
       appBar: const PreferredSize(
           preferredSize: Size.fromHeight(35.0),
           child: CustomAppBar(
-            title: "",
+            title: AppStrings.plantVendorTitle,
             removeBg: true,
           )),
       body: Container(
@@ -42,6 +43,14 @@ class ClosestVendors extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.5,
                   color: const Color(0x952F2E2F),
+                  child: ListView.builder(
+                    itemCount: model.closestVendors.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        title: VendorExpandingWidget(closestVendorModel: model.closestVendors[index]),
+                      );
+                    },
+                  ),
                 )
               ],
             );

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flower_prediction/models/base_api_response.dart';
 import 'package:flower_prediction/models/closest_vendors.dart';
 import 'package:flower_prediction/service/flower_service.dart';
@@ -7,6 +5,7 @@ import 'package:flower_prediction/utils/navigation_service.dart';
 import 'package:flower_prediction/utils/urls.dart';
 import 'package:flower_prediction/utils/utils.dart';
 import 'package:flower_prediction/views/vendor/closest_vendors.dart';
+import 'package:flower_prediction/widgets/popups/data_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:geolocator/geolocator.dart';
@@ -37,16 +36,19 @@ class VendorViewModel extends ChangeNotifier {
     } else {
       try {
         EasyLoading.dismiss();
-        closestVendors = response.data.map((json) => ClosestVendorsModel.fromJson(json)).toList();
 
-        closestVendors = response.data.map((json) => ClosestVendorsModel.fromJson(json)).toList();
-        print(closestVendors);
-        // Navigator.push(
-        //   NavigationService.navigatorKey.currentContext!,
-        //   MaterialPageRoute(builder: (context) => const ClosestVendors()),
-        // );
+        closestVendors =
+            response.data.map<ClosestVendorsModel>((data) => ClosestVendorsModel.fromJson(data)).toList();
+
+        if (closestVendors.isEmpty) {
+          dataPopup('No vendors nearby');
+        } else {
+          Navigator.push(
+            NavigationService.navigatorKey.currentContext!,
+            MaterialPageRoute(builder: (context) => const ClosestVendors()),
+          );
+        }
       } catch (e) {
-        print(e);
         EasyLoading.dismiss();
         Utils.showSnackBar('Something went wrong -- $e', NavigationService.navigatorKey.currentContext!);
       }

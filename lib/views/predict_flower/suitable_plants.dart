@@ -2,7 +2,7 @@ import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/viewmodels/predict_flower_viewmodel.dart';
 import 'package:flower_prediction/widgets/custom_app_bar.dart';
-import 'package:flower_prediction/widgets/expanding_text_widget.dart';
+import 'package:flower_prediction/widgets/flower_expanding_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,12 +30,13 @@ class SuitablePlants extends StatelessWidget {
               ),
               color: Colors.transparent),
           child: ListView.builder(
-              itemCount: model.suitablePlants.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: ExpandingTextWidget(suitableFlowerModel: model.suitablePlants[index]),
-                );
-              }),
+            itemCount: model.suitablePlants.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: FlowerExpandingWidget(suitableFlowerModel: model.suitablePlants[index]),
+              );
+            },
+          ),
         );
       }),
     );

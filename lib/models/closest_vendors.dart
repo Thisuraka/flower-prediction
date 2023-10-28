@@ -62,12 +62,12 @@ class ClosestVendorsModel {
 
   factory ClosestVendorsModel.fromJson(Map<String, dynamic> json) {
     return ClosestVendorsModel(
-      avgPrice: json['avgPrice'] as double,
-      avgRating: json['avgRating'] as double,
-      distance: json['distance'] as double,
-      lat: json['lat'] as double,
-      lon: json['lon'] as double,
-      vendorId: json['vendorId'] as int,
+      avgPrice: json['avg_price']?.toDouble() ?? 0.0,
+      avgRating: json['avg_rating']?.toDouble() ?? 0.0,
+      distance: json['distance']?.toDouble() ?? 0.0,
+      lat: json['lat']?.toDouble() ?? 0.0,
+      lon: json['lon']?.toDouble() ?? 0.0,
+      vendorId: json['vendor_id'] ?? 0,
     );
   }
 

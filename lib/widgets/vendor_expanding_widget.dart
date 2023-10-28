@@ -1,17 +1,19 @@
+import 'package:flower_prediction/models/closest_vendors.dart';
 import 'package:flower_prediction/models/suitable_flower_model.dart';
 import 'package:flower_prediction/style.dart';
+import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flutter/material.dart';
 
-class ExpandingTextWidget extends StatefulWidget {
-  final SuitableFlowerModel suitableFlowerModel;
+class VendorExpandingWidget extends StatefulWidget {
+  final ClosestVendorsModel closestVendorModel;
 
-  const ExpandingTextWidget({super.key, required this.suitableFlowerModel});
+  const VendorExpandingWidget({super.key, required this.closestVendorModel});
 
   @override
-  State<ExpandingTextWidget> createState() => _ExpandingTextWidgetState();
+  State<VendorExpandingWidget> createState() => _FlowerExpandingWidgetState();
 }
 
-class _ExpandingTextWidgetState extends State<ExpandingTextWidget> {
+class _FlowerExpandingWidgetState extends State<VendorExpandingWidget> {
   bool isExpanded = false;
 
   @override
@@ -25,8 +27,8 @@ class _ExpandingTextWidgetState extends State<ExpandingTextWidget> {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
-        height: isExpanded ? size * 0.5 : size * 0.05 + 2,
-        width: isExpanded ? size * 0.9 : size * 0.2,
+        height: isExpanded ? size * 0.2 : size * 0.05 + 2,
+        width: size * 0.9,
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
@@ -39,22 +41,34 @@ class _ExpandingTextWidgetState extends State<ExpandingTextWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      widget.suitableFlowerModel.flowerName!,
+                      '${widget.closestVendorModel.distance.toStringAsFixed(2)} KM away',
                       style: const TextStyle(
                           color: greenLvl1, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
                     ),
                     Flex(
                       direction: Axis.vertical,
                       children: [
-                        itemRow("💧", widget.suitableFlowerModel.water!, context),
-                        itemRow("🌱", widget.suitableFlowerModel.soil!, context),
-                        itemRow("☀️", widget.suitableFlowerModel.sunlight!, context),
-                        itemRow("🍃", widget.suitableFlowerModel.growMethod!, context),
-                        itemRow("🩹", widget.suitableFlowerModel.addCare!, context),
-                        itemRow("📐", widget.suitableFlowerModel.plantDepth!, context),
-                        itemRow("📏", widget.suitableFlowerModel.spacing!, context),
+                        itemRow(
+                            "⭐",
+                            "${AppStrings.plantVendorRating}: ${widget.closestVendorModel.avgRating}",
+                            context),
+                        itemRow(
+                            "🏷️",
+                            "${AppStrings.plantVendorAvgPrice}: ${widget.closestVendorModel.avgPrice}",
+                            context),
                       ],
                     ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: () {},
+                        child: const Text(
+                          "${AppStrings.plantVendorDirections} ➤",
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        ),
+                      ),
+                    )
                   ],
                 )
               : Row(
@@ -62,12 +76,12 @@ class _ExpandingTextWidgetState extends State<ExpandingTextWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      widget.suitableFlowerModel.flowerName!,
+                      '${widget.closestVendorModel.distance.toStringAsFixed(2)} KM away',
                       style: const TextStyle(color: Colors.white),
                     ),
-                    Text(
-                      widget.suitableFlowerModel.emoji!,
-                      style: const TextStyle(fontSize: 12, decoration: TextDecoration.underline),
+                    const Text(
+                      "📍",
+                      style: TextStyle(fontSize: 12, decoration: TextDecoration.underline),
                     ),
                   ],
                 ),
