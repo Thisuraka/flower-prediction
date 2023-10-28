@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class VendorExpandingWidget extends StatefulWidget {
   final ClosestVendorsModel closestVendorModel;
-  Function()? goToDirections;
+  final Function()? goToDirections;
 
-  VendorExpandingWidget({super.key, required this.closestVendorModel, required this.goToDirections});
+  const VendorExpandingWidget({super.key, required this.closestVendorModel, required this.goToDirections});
 
   @override
   State<VendorExpandingWidget> createState() => _FlowerExpandingWidgetState();
