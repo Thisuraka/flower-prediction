@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WeatherPrediction extends StatelessWidget {
-  WeatherPrediction({super.key});
-  final List<String> list = <String>['Month', 'Week'];
-  final List months = ['1st', '2nd', '3rd', '4th'];
+  const WeatherPrediction({super.key});
 
   @override
   Widget build(BuildContext context) {

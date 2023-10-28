@@ -2,6 +2,7 @@ import 'package:flower_prediction/models/suitable_flower_model.dart';
 
 List<SuitableFlowerModel> suitableFlowerData = [
   SuitableFlowerModel(
+    emoji: '🌹',
     classification: "Rose",
     water: "Keep the soil evenly moist but not waterlogged.",
     soil: "Well-drained, slightly acidic soil.",
@@ -15,6 +16,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space rose plants approximately 2-3 feet apart.",
   ),
   SuitableFlowerModel(
+    emoji: '🌷',
     classification: "Carnation",
     water: "Keep the soil consistently moist, but avoid overwatering.",
     soil: "Well-drained soil with good organic content.",
@@ -26,6 +28,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space carnation plants about 12-18 inches apart.",
   ),
   SuitableFlowerModel(
+    emoji: '🏵️',
     classification: "Gerbera",
     water: "Keep the soil consistently moist. Use a saucer to maintain high humidity around the plant.",
     soil: "Well-draining, slightly acidic soil.",
@@ -39,6 +42,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space gerbera plants approximately 12-18 inches apart.",
   ),
   SuitableFlowerModel(
+    emoji: '🌺',
     classification: "Chrysanthemum",
     water: "Maintain even soil moisture, but avoid water on the leaves.",
     soil: "Well-draining, fertile soil.",
@@ -51,6 +55,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space chrysanthemum plants about 18-24 inches apart.",
   ),
   SuitableFlowerModel(
+    emoji: '🌸',
     classification: "Lily",
     water: "Keep the soil evenly moist but not waterlogged.",
     soil: "Well-drained, slightly acidic soil.",
@@ -63,22 +68,29 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space lily bulbs 6-8 inches apart.",
   ),
   SuitableFlowerModel(
+    emoji: '🌼',
     classification: "Gypsophila",
     water: "Keep the soil evenly moist but not waterlogged.",
     soil: "Well-drained soil is essential for Gypsophila.",
     sunlight: "Gypsophila prefers full sun but can tolerate some light shade.",
     growMethod: "Gypsophila can be grown from seeds or cuttings. Pruning can help maintain a compact shape.",
     addCare: "This delicate flower may benefit from gentle staking to support its airy growth.",
+    plantDepth: "",
+    spacing: "",
   ),
   SuitableFlowerModel(
+    emoji: '🌷',
     classification: "Limonium",
     water: "Keep the soil evenly moist but not soggy.",
     soil: "Well-draining soil is suitable for Limonium.",
     sunlight: "Full sun to light shade is ideal.",
     growMethod: "Limonium can be grown from seeds or cuttings.",
     addCare: "Pruning spent blooms can encourage further flowering.",
+    plantDepth: "",
+    spacing: "",
   ),
   SuitableFlowerModel(
+    emoji: '🥀',
     classification: "Anthurium",
     water: "Keep the soil evenly moist but avoid waterlogging.",
     soil: "Well-draining, coarse soil with good organic matter.",
@@ -86,8 +98,11 @@ List<SuitableFlowerModel> suitableFlowerData = [
     growMethod: "Anthurium is typically grown from young plants or offsets.",
     addCare:
         "Maintain a high humidity level, mist the plant, and keep it away from drafts. Fertilize during the growing season.",
+    plantDepth: "",
+    spacing: "",
   ),
   SuitableFlowerModel(
+    emoji: '🌺',
     classification: "Orchid",
     water: "Water sparingly, allowing the growing medium to partially dry between waterings.",
     soil: "Orchids are usually grown in a specialized orchid mix or on a suitable orchid mount.",
@@ -97,5 +112,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
         "Orchids require different care depending on the type. Common types include Phalaenopsis, Cattleya, and Dendrobium.",
     addCare:
         "Maintain proper humidity, provide good air circulation, and consider fertilizing with orchid-specific fertilizer. Orchids need repotting when their medium breaks down.",
+    plantDepth: "",
+    spacing: "",
   ),
 ];

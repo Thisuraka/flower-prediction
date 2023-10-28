@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 class SuitableFlowerModel {
+  String? emoji;
   String? flowerName;
   String? classification;
   String? water;
@@ -12,6 +13,7 @@ class SuitableFlowerModel {
   String? plantDepth;
   String? spacing;
   SuitableFlowerModel({
+    this.emoji,
     this.flowerName,
     this.classification,
     this.water,
@@ -24,6 +26,7 @@ class SuitableFlowerModel {
   });
 
   SuitableFlowerModel copyWith({
+    String? emoji,
     String? flowerName,
     String? classification,
     String? water,
@@ -35,6 +38,7 @@ class SuitableFlowerModel {
     String? spacing,
   }) {
     return SuitableFlowerModel(
+      emoji: emoji ?? this.emoji,
       flowerName: flowerName ?? this.flowerName,
       classification: classification ?? this.classification,
       water: water ?? this.water,
@@ -49,6 +53,7 @@ class SuitableFlowerModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'emoji': emoji,
       'flowerName': flowerName,
       'classification': classification,
       'water': water,
@@ -63,6 +68,7 @@ class SuitableFlowerModel {
 
   factory SuitableFlowerModel.fromMap(Map<String, dynamic> map) {
     return SuitableFlowerModel(
+      emoji: map['emoji'] != null ? map['emoji'] as String : null,
       flowerName: map['flowerName'] != null ? map['flowerName'] as String : null,
       classification: map['classification'] != null ? map['classification'] as String : null,
       water: map['water'] != null ? map['water'] as String : null,
@@ -82,14 +88,15 @@ class SuitableFlowerModel {
 
   @override
   String toString() {
-    return 'SuitableFlowerModel(flowerName: $flowerName, classification: $classification, water: $water, soil: $soil, sunlight: $sunlight, growMethod: $growMethod, addCare: $addCare, plantDepth: $plantDepth, spacing: $spacing)';
+    return 'SuitableFlowerModel(emoji: $emoji, flowerName: $flowerName, classification: $classification, water: $water, soil: $soil, sunlight: $sunlight, growMethod: $growMethod, addCare: $addCare, plantDepth: $plantDepth, spacing: $spacing)';
   }
 
   @override
   bool operator ==(covariant SuitableFlowerModel other) {
     if (identical(this, other)) return true;
 
-    return other.flowerName == flowerName &&
+    return other.emoji == emoji &&
+        other.flowerName == flowerName &&
         other.classification == classification &&
         other.water == water &&
         other.soil == soil &&
@@ -102,7 +109,8 @@ class SuitableFlowerModel {
 
   @override
   int get hashCode {
-    return flowerName.hashCode ^
+    return emoji.hashCode ^
+        flowerName.hashCode ^
         classification.hashCode ^
         water.hashCode ^
         soil.hashCode ^

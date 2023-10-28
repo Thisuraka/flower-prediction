@@ -181,11 +181,12 @@ void predictFlowerPopup({
   required TextEditingController growingTimePeriodController,
   required BuildContext context,
   required GlobalKey formKey,
+  required String selectedValue,
   required Function(String?) onSelected,
   required dynamic Function() onConfirm,
 }) async {
   List<String> dropdownItems = ['Colombo', 'Badulla', 'Hatton', 'Kalutara', 'Kandy', 'Mount Lavinia'];
-  String selectedValue = 'Colombo';
+
 
   final List<DropdownMenuEntry<String>> locationEntries = <DropdownMenuEntry<String>>[];
   for (final String month in dropdownItems) {
