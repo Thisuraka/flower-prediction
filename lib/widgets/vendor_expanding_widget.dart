@@ -1,13 +1,13 @@
 import 'package:flower_prediction/models/closest_vendors.dart';
-import 'package:flower_prediction/models/suitable_flower_model.dart';
 import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class VendorExpandingWidget extends StatefulWidget {
   final ClosestVendorsModel closestVendorModel;
+  Function()? goToDirections;
 
-  const VendorExpandingWidget({super.key, required this.closestVendorModel});
+  VendorExpandingWidget({super.key, required this.closestVendorModel, required this.goToDirections});
 
   @override
   State<VendorExpandingWidget> createState() => _FlowerExpandingWidgetState();
@@ -62,7 +62,7 @@ class _FlowerExpandingWidgetState extends State<VendorExpandingWidget> {
                       padding: const EdgeInsets.only(top: 10),
                       alignment: Alignment.centerRight,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: widget.goToDirections,
                         child: const Text(
                           "${AppStrings.plantVendorDirections} ➤",
                           style: TextStyle(fontStyle: FontStyle.italic),

@@ -6,7 +6,6 @@ import 'package:flower_prediction/viewmodels/growth_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/home_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/predict_flower_viewmodel.dart';
 import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
-import 'package:flower_prediction/views/vendor/closest_vendors.dart';
 import 'package:flower_prediction/widgets/home_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

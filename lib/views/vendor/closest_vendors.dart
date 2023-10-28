@@ -1,4 +1,3 @@
-import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
@@ -47,7 +46,14 @@ class ClosestVendors extends StatelessWidget {
                     itemCount: model.closestVendors.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
-                        title: VendorExpandingWidget(closestVendorModel: model.closestVendors[index]),
+                        title: VendorExpandingWidget(
+                          closestVendorModel: model.closestVendors[index],
+                          goToDirections: () {
+                            // TODO Sandaru
+                            // model.closestVendors[index].lat
+                            // model.closestVendors[index].lon
+                          },
+                        ),
                       );
                     },
                   ),
