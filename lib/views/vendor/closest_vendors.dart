@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
 import 'package:flower_prediction/widgets/custom_app_bar.dart';
 import 'package:flower_prediction/widgets/vendor_expanding_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 class ClosestVendors extends StatelessWidget {
@@ -11,6 +14,9 @@ class ClosestVendors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
+    final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
+
     return Scaffold(
       appBar: const PreferredSize(
           preferredSize: Size.fromHeight(35.0),
@@ -34,13 +40,23 @@ class ClosestVendors extends StatelessWidget {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   margin: const EdgeInsets.symmetric(vertical: 30),
-                  color: Colors.amber,
+                  child: GoogleMap(
+                    mapType: MapType.normal,
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(model.userLocation!.latitude, model.userLocation!.longitude),
+                      zoom: 14.5,
+                    ),
+                    markers:model.vendorMarkerList,
+                    onMapCreated: (GoogleMapController controller) {
+                      _controller.complete(controller);
+                    },
+                  ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   color: const Color(0x952F2E2F),
                   child: ListView.builder(
                     itemCount: model.closestVendors.length,
@@ -48,11 +64,7 @@ class ClosestVendors extends StatelessWidget {
                       return ListTile(
                         title: VendorExpandingWidget(
                           closestVendorModel: model.closestVendors[index],
-                          goToDirections: () {
-                            // TODO Sandaru
-                            // model.closestVendors[index].lat
-                            // model.closestVendors[index].lon
-                          },
+                          goToDirections: () {},
                         ),
                       );
                     },

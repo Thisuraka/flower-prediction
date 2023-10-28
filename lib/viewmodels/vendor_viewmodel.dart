@@ -9,12 +9,18 @@ import 'package:flower_prediction/widgets/popups/data_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class VendorViewModel extends ChangeNotifier {
   final FlowerService service = FlowerService();
   List<ClosestVendorsModel> closestVendors = [];
+  Set<Marker> vendorMarkerList = {};
+  Position? userLocation;
 
   void getClosestVendors() async {
+    closestVendors = [];
+    vendorMarkerList = {};
+
     EasyLoading.instance
       ..displayDuration = const Duration(milliseconds: 2000)
       ..indicatorColor = Colors.white
@@ -24,10 +30,24 @@ class VendorViewModel extends ChangeNotifier {
 
     EasyLoading.show(status: 'loading...');
 
-    Position position = await determinePosition();
+    userLocation = await determinePosition();
+
+    if (userLocation != null) {
+      vendorMarkerList.add(
+        Marker(
+          markerId: const MarkerId(
+            'user',
+          ),
+          position: LatLng(
+            userLocation!.latitude,
+            userLocation!.longitude,
+          ),
+        ),
+      );
+    }
 
     BaseAPIResponse response = await service.predictFlower(UrlConstants.getClosestVendorsEndpoint(), {
-      "user_location": [position.latitude, position.longitude]
+      "user_location": [userLocation!.latitude, userLocation!.longitude]
     });
     if (response.error) {
       EasyLoading.dismiss();
@@ -43,6 +63,16 @@ class VendorViewModel extends ChangeNotifier {
         if (closestVendors.isEmpty) {
           dataPopup('No vendors nearby');
         } else {
+          for (final vendor in closestVendors) {
+            vendorMarkerList.add(Marker(
+                markerId: MarkerId(
+                  '${vendor.vendorId} vendor',
+                ),
+                position: LatLng(
+                  vendor.lat,
+                  vendor.lon,
+                )));
+          }
           Navigator.push(
             NavigationService.navigatorKey.currentContext!,
             MaterialPageRoute(builder: (context) => const ClosestVendors()),
