@@ -32,20 +32,6 @@ class VendorViewModel extends ChangeNotifier {
 
     userLocation = await determinePosition();
 
-    if (userLocation != null) {
-      vendorMarkerList.add(
-        Marker(
-          markerId: const MarkerId(
-            'user',
-          ),
-          position: LatLng(
-            userLocation!.latitude,
-            userLocation!.longitude,
-          ),
-        ),
-      );
-    }
-
     BaseAPIResponse response = await service.predictFlower(UrlConstants.getClosestVendorsEndpoint(), {
       "user_location": [userLocation!.latitude, userLocation!.longitude]
     });
@@ -67,6 +53,9 @@ class VendorViewModel extends ChangeNotifier {
             vendorMarkerList.add(Marker(
                 markerId: MarkerId(
                   '${vendor.vendorId} vendor',
+                ),
+                infoWindow: InfoWindow(
+                  title: vendor.avgRating.toString(),
                 ),
                 position: LatLng(
                   vendor.lat,

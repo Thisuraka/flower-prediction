@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
+import 'package:flower_prediction/views/vendor/route_map.dart';
 import 'package:flower_prediction/widgets/custom_app_bar.dart';
 import 'package:flower_prediction/widgets/vendor_expanding_widget.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,9 @@ class ClosestVendors extends StatelessWidget {
                       target: LatLng(model.userLocation!.latitude, model.userLocation!.longitude),
                       zoom: 14.5,
                     ),
-                    markers:model.vendorMarkerList,
+                    myLocationEnabled: true,
+                    myLocationButtonEnabled: true,
+                    markers: model.vendorMarkerList,
                     onMapCreated: (GoogleMapController controller) {
                       _controller.complete(controller);
                     },
@@ -64,7 +67,18 @@ class ClosestVendors extends StatelessWidget {
                       return ListTile(
                         title: VendorExpandingWidget(
                           closestVendorModel: model.closestVendors[index],
-                          goToDirections: () {},
+                          goToDirections: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RouteMap(
+                                  userLocation:
+                                      LatLng(model.userLocation!.latitude, model.userLocation!.longitude),
+                                  closestVendorsModel: model.closestVendors[index],
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       );
                     },

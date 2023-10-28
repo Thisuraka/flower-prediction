@@ -15,6 +15,7 @@ dependencies:
   cupertino_icons:
   dio:
   flutter_easyloading:
+  flutter_polyline_points: ^2.0.0
   flutter_spinkit:
   image_picker:
   permission_handler: ^11.0.1
