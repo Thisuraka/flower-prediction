@@ -36,6 +36,7 @@ Future<void> dataPopup(String text) {
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 18,
+                      color: Colors.black87,
                       fontWeight: FontWeight.w300,
                     ),
                   ),

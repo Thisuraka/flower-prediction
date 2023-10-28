@@ -33,7 +33,7 @@ class FlowerService {
   }
 
   Future<BaseAPIResponse> predictFlower(String endpoint, Map<String, dynamic> body) async {
-    BaseAPIResponse response = await Network.request(method: RequestType.post, url: endpoint, body: body);
+    BaseAPIResponse response = await Network.request(url: endpoint, method: RequestType.post, body: body);
     return response;
   }
 }

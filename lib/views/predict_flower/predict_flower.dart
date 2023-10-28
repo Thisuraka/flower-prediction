@@ -46,7 +46,7 @@ class _PredictFlowerState extends State<PredictFlower> {
               ),
               InkWell(
                 onTap: () {
-                  model.processMostSuitablePlant();
+                  model.processWeather();
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.7,

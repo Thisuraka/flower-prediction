@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flower_prediction/models/base_api_response.dart';
 import 'package:flower_prediction/utils/enums/request_types.dart';
+import 'package:flutter/foundation.dart';
 
 class Network {
   static Future<BaseAPIResponse> request(
@@ -37,6 +38,7 @@ class Network {
         return BaseAPIResponse(data: response.data['data'], error: true, status: response.statusCode);
       }
     } on DioException catch (e) {
+      if (kDebugMode) print(e);
       return BaseAPIResponse(data: null, error: true, status: e.response?.statusCode);
     }
   }

@@ -19,7 +19,7 @@ class UrlConstants {
     }
   }
 
-  static String getFlowerEndpoint() {
+  static String getFlowerWeatherEndpoint() {
     if (environment == "development") {
       return "$baseUrl/suggest-flower";
     } else {
