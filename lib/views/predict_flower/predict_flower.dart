@@ -73,7 +73,9 @@ class _PredictFlowerState extends State<PredictFlower> {
                 height: 50,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  model.processSuitable();
+                },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.7,
                   height: 100,
