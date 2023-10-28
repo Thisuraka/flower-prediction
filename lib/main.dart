@@ -8,6 +8,7 @@ import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
 import 'package:flower_prediction/views/onboarding/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -33,8 +34,19 @@ void main() {
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    requestLocationPermission();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,5 +64,14 @@ class MyApp extends StatelessWidget {
       home: const SplashView(),
       builder: EasyLoading.init(),
     );
+  }
+
+  Future<void> requestLocationPermission() async {
+    var status = await Permission.location.request();
+    if (status.isGranted) {
+    } else if (status.isDenied) {
+    } else if (status.isPermanentlyDenied) {
+      openAppSettings();
+    }
   }
 }

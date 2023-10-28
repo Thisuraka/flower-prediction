@@ -17,10 +17,12 @@ dependencies:
   flutter_easyloading:
   flutter_spinkit:
   image_picker:
+  permission_handler: ^11.0.1
   provider:
   shared_preferences:
   shimmer_animation:
   toggle_switch:
+  geolocator: ^10.1.0
   google_maps_flutter: ^2.5.0
 
 dev_dependencies:

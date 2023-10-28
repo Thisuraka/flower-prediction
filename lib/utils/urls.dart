@@ -26,4 +26,12 @@ class UrlConstants {
       return "https://identifytype-w2qyntknzq-uc.a.run.app/suggest-flower";
     }
   }
+
+  static String getClosestVendorsEndpoint() {
+    if (environment == "development") {
+      return "$baseUrl/shortest-path";
+    } else {
+      return "https://identifytype-w2qyntknzq-uc.a.run.app/shortest-path";
+    }
+  }
 }
