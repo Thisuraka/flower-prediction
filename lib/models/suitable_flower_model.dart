@@ -3,6 +3,7 @@ import 'dart:convert';
 
 class SuitableFlowerModel {
   String? flowerName;
+  String? classification;
   String? water;
   String? soil;
   String? sunlight;
@@ -12,6 +13,7 @@ class SuitableFlowerModel {
   String? spacing;
   SuitableFlowerModel({
     this.flowerName,
+    this.classification,
     this.water,
     this.soil,
     this.sunlight,
@@ -23,6 +25,7 @@ class SuitableFlowerModel {
 
   SuitableFlowerModel copyWith({
     String? flowerName,
+    String? classification,
     String? water,
     String? soil,
     String? sunlight,
@@ -33,6 +36,7 @@ class SuitableFlowerModel {
   }) {
     return SuitableFlowerModel(
       flowerName: flowerName ?? this.flowerName,
+      classification: classification ?? this.classification,
       water: water ?? this.water,
       soil: soil ?? this.soil,
       sunlight: sunlight ?? this.sunlight,
@@ -45,7 +49,8 @@ class SuitableFlowerModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'plant': flowerName,
+      'flowerName': flowerName,
+      'classification': classification,
       'water': water,
       'soil': soil,
       'sunlight': sunlight,
@@ -58,7 +63,8 @@ class SuitableFlowerModel {
 
   factory SuitableFlowerModel.fromMap(Map<String, dynamic> map) {
     return SuitableFlowerModel(
-      flowerName: map['plant'] != null ? map['plant'] as String : null,
+      flowerName: map['flowerName'] != null ? map['flowerName'] as String : null,
+      classification: map['classification'] != null ? map['classification'] as String : null,
       water: map['water'] != null ? map['water'] as String : null,
       soil: map['soil'] != null ? map['soil'] as String : null,
       sunlight: map['sunlight'] != null ? map['sunlight'] as String : null,
@@ -76,7 +82,7 @@ class SuitableFlowerModel {
 
   @override
   String toString() {
-    return 'SuitableFlowerModel(plant: $flowerName, water: $water, soil: $soil, sunlight: $sunlight, growMethod: $growMethod, addCare: $addCare, plantDepth: $plantDepth, spacing: $spacing)';
+    return 'SuitableFlowerModel(flowerName: $flowerName, classification: $classification, water: $water, soil: $soil, sunlight: $sunlight, growMethod: $growMethod, addCare: $addCare, plantDepth: $plantDepth, spacing: $spacing)';
   }
 
   @override
@@ -84,6 +90,7 @@ class SuitableFlowerModel {
     if (identical(this, other)) return true;
 
     return other.flowerName == flowerName &&
+        other.classification == classification &&
         other.water == water &&
         other.soil == soil &&
         other.sunlight == sunlight &&
@@ -96,6 +103,7 @@ class SuitableFlowerModel {
   @override
   int get hashCode {
     return flowerName.hashCode ^
+        classification.hashCode ^
         water.hashCode ^
         soil.hashCode ^
         sunlight.hashCode ^

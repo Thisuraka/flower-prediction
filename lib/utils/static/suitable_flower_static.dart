@@ -2,7 +2,7 @@ import 'package:flower_prediction/models/suitable_flower_model.dart';
 
 List<SuitableFlowerModel> suitableFlowerData = [
   SuitableFlowerModel(
-    flowerName: "Rose",
+    classification: "Rose",
     water: "Keep the soil evenly moist but not waterlogged.",
     soil: "Well-drained, slightly acidic soil.",
     sunlight: "Full sun for at least six hours a day.",
@@ -15,7 +15,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space rose plants approximately 2-3 feet apart.",
   ),
   SuitableFlowerModel(
-    flowerName: "Carnation",
+    classification: "Carnation",
     water: "Keep the soil consistently moist, but avoid overwatering.",
     soil: "Well-drained soil with good organic content.",
     sunlight: "Full sun, although some afternoon shade can be beneficial in hot climates.",
@@ -26,7 +26,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space carnation plants about 12-18 inches apart.",
   ),
   SuitableFlowerModel(
-    flowerName: "Gerbera",
+    classification: "Gerbera",
     water: "Keep the soil consistently moist. Use a saucer to maintain high humidity around the plant.",
     soil: "Well-draining, slightly acidic soil.",
     sunlight: "Full sun with some protection from harsh midday sun.",
@@ -39,7 +39,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space gerbera plants approximately 12-18 inches apart.",
   ),
   SuitableFlowerModel(
-    flowerName: "Chrysanthemum",
+    classification: "Chrysanthemum",
     water: "Maintain even soil moisture, but avoid water on the leaves.",
     soil: "Well-draining, fertile soil.",
     sunlight: "Full sun for at least half of the day.",
@@ -51,7 +51,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space chrysanthemum plants about 18-24 inches apart.",
   ),
   SuitableFlowerModel(
-    flowerName: "Lily",
+    classification: "Lily",
     water: "Keep the soil evenly moist but not waterlogged.",
     soil: "Well-drained, slightly acidic soil.",
     sunlight: "Full sun for at least six hours a day.",
@@ -63,7 +63,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     spacing: "Space lily bulbs 6-8 inches apart.",
   ),
   SuitableFlowerModel(
-    flowerName: "Gypsophila",
+    classification: "Gypsophila",
     water: "Keep the soil evenly moist but not waterlogged.",
     soil: "Well-drained soil is essential for Gypsophila.",
     sunlight: "Gypsophila prefers full sun but can tolerate some light shade.",
@@ -71,7 +71,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     addCare: "This delicate flower may benefit from gentle staking to support its airy growth.",
   ),
   SuitableFlowerModel(
-    flowerName: "Limonium",
+    classification: "Limonium",
     water: "Keep the soil evenly moist but not soggy.",
     soil: "Well-draining soil is suitable for Limonium.",
     sunlight: "Full sun to light shade is ideal.",
@@ -79,7 +79,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
     addCare: "Pruning spent blooms can encourage further flowering.",
   ),
   SuitableFlowerModel(
-    flowerName: "Anthurium",
+    classification: "Anthurium",
     water: "Keep the soil evenly moist but avoid waterlogging.",
     soil: "Well-draining, coarse soil with good organic matter.",
     sunlight: "Bright, indirect light is best.",
@@ -88,7 +88,7 @@ List<SuitableFlowerModel> suitableFlowerData = [
         "Maintain a high humidity level, mist the plant, and keep it away from drafts. Fertilize during the growing season.",
   ),
   SuitableFlowerModel(
-    flowerName: "Orchid",
+    classification: "Orchid",
     water: "Water sparingly, allowing the growing medium to partially dry between waterings.",
     soil: "Orchids are usually grown in a specialized orchid mix or on a suitable orchid mount.",
     sunlight:

@@ -79,37 +79,55 @@ class PredictFlowerViewModel extends ChangeNotifier {
   }
 
   void processSuitable() async {
-    try {
-      BaseAPIResponse response = await service.predictFlower(UrlConstants.getFlowerWeatherEndpoint(), {
-        "location": farmerLocation,
-        "time_period": growingTimePeriodController.text,
-        "ph_value": soilPhValueController.text,
-      });
-      if (response.error) {
-        Utils.showSnackBar(
-            'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
-      } else {
-        if (response.data == "No suitable flowers") {
-          Navigator.pop(NavigationService.navigatorKey.currentContext!);
-          dataPopup('No suitable flowers found');
-        } else {
-          print(response.data);
-          // TODO sandaru
-          for (String searchTerm in response.data["flower_data"]["bestSuggested"]) {
-            String searchTermLower = searchTerm.toLowerCase();
-            suitablePlants.addAll(suitableFlowerData.where((flower) {
-              return searchTermLower.contains(flower.flowerName!.toLowerCase());
-            }));
-          }
+    const String sample =
+        '{"flower_data": {"allEligible": ["Hybrid Tea Rose", "Grandiflora Rose", "Floribunda Rose"], "bestSuggested": ["Hybrid Tea Rose", "Grandiflora Rose", "Floribunda Rose"], "demand": 10109}, "weather_data": [{"level_0":0,"index":0,"Month":"2023-11","predicted":25.8041778057},{"level_0":1,"index":1,"Month":"2023-12","predicted":25.6431524785},{"level_0":2,"index":2,"Month":"2024-01","predicted":26.1003173407},{"level_0":3,"index":3,"Month":"2024-02","predicted":26.9408546962},{"level_0":4,"index":4,"Month":"2024-03","predicted":27.5084126612},{"level_0":5,"index":5,"Month":"2024-04","predicted":27.3348200538},{"level_0":6,"index":6,"Month":"2024-05","predicted":27.1438602021}]}';
+    var decodedValue = jsonDecode(sample);
+    final List bestSuggested = decodedValue['flower_data']['bestSuggested'];
+    for (var flower in bestSuggested) {
+      // final flowerData = suitableFlowerData
+      //     .where((flowerClassification) => flowerClassification.classification!.toLowerCase() == 'rose')
+      //     .toList();
 
-          print(suitablePlants);
+      for (var flowerData in suitableFlowerData) {
+        bool isOfType = flower.toLowerCase().contains(flowerData.classification!.toLowerCase());
+        if (!isOfType) {
+          break;
         }
+        final updatedFlower = flowerData.copyWith(flowerName: flower);
+        suitablePlants.add(updatedFlower);
       }
-    } catch (e) {
-      EasyLoading.dismiss();
-      Navigator.pop(NavigationService.navigatorKey.currentContext!);
-      Utils.showSnackBar('Something went wrong', NavigationService.navigatorKey.currentContext!);
     }
+    // try {
+    //   BaseAPIResponse response = await service.predictFlower(UrlConstants.getFlowerWeatherEndpoint(), {
+    //     "location": farmerLocation,
+    //     "time_period": growingTimePeriodController.text,
+    //     "ph_value": soilPhValueController.text,
+    //   });
+    //   if (response.error) {
+    //     Utils.showSnackBar(
+    //         'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
+    //   } else {
+    //     if (response.data == "No suitable flowers") {
+    //       Navigator.pop(NavigationService.navigatorKey.currentContext!);
+    //       dataPopup('No suitable flowers found');
+    //     } else {
+    //       print(response.data);
+    //       // TODO sandaru
+    //       for (String searchTerm in response.data["flower_data"]["bestSuggested"]) {
+    //         String searchTermLower = searchTerm.toLowerCase();
+    //         suitablePlants.addAll(suitableFlowerData.where((flower) {
+    //           return searchTermLower.contains(flower.flowerName!.toLowerCase());
+    //         }));
+    //       }
+
+    //       print(suitablePlants);
+    //     }
+    //   }
+    // } catch (e) {
+    //   EasyLoading.dismiss();
+    //   Navigator.pop(NavigationService.navigatorKey.currentContext!);
+    //   Utils.showSnackBar('Something went wrong', NavigationService.navigatorKey.currentContext!);
+    // }
   }
 }
 
