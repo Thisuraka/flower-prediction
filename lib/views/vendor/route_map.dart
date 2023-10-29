@@ -28,7 +28,7 @@ class _RouteMapState extends State<RouteMap> {
   void initState() {
     markers.add(Marker(
       markerId: MarkerId(widget.closestVendorsModel.vendorId.toString()),
-      position: LatLng(widget.closestVendorsModel.lat, widget.closestVendorsModel.lon),
+      position: LatLng(widget.closestVendorsModel.lon, widget.closestVendorsModel.lat),
       infoWindow: InfoWindow(
         title: widget.closestVendorsModel.avgRating.toString(),
       ),
@@ -75,7 +75,7 @@ class _RouteMapState extends State<RouteMap> {
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       googleAPiKey,
       PointLatLng(widget.userLocation.latitude, widget.userLocation.longitude),
-      PointLatLng(widget.closestVendorsModel.lat, widget.closestVendorsModel.lon),
+      PointLatLng(widget.closestVendorsModel.lon, widget.closestVendorsModel.lat),
       travelMode: TravelMode.driving,
     );
 

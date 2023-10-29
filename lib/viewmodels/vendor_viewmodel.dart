@@ -58,8 +58,8 @@ class VendorViewModel extends ChangeNotifier {
                   title: vendor.avgRating.toString(),
                 ),
                 position: LatLng(
-                  vendor.lat,
                   vendor.lon,
+                  vendor.lat,
                 )));
           }
           Navigator.push(
