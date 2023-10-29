@@ -187,7 +187,6 @@ void predictFlowerPopup({
 }) async {
   List<String> dropdownItems = ['Colombo', 'Badulla', 'Hatton', 'Kalutara', 'Kandy', 'Mount Lavinia'];
 
-
   final List<DropdownMenuEntry<String>> locationEntries = <DropdownMenuEntry<String>>[];
   for (final String month in dropdownItems) {
     locationEntries.add(
@@ -235,7 +234,7 @@ void predictFlowerPopup({
                 RoundedTextboxWidget(
                   controller: soilPhValueController,
                   labelText: AppStrings.plantPredictionEnterSoilPh,
-                  keyboardType: TextInputType.number,
+                  keyboardType: const TextInputType.numberWithOptions(decimal: false),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return AppStrings.enterValues;
@@ -246,7 +245,7 @@ void predictFlowerPopup({
                 RoundedTextboxWidget(
                   controller: growingTimePeriodController,
                   labelText: AppStrings.plantPredictionEnterGrowTimePeriod,
-                  keyboardType: TextInputType.number,
+                  keyboardType: const TextInputType.numberWithOptions(decimal: false),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return AppStrings.enterValues;

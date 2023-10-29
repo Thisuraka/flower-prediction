@@ -20,7 +20,7 @@ class AppStrings {
   static const plantPredictionEnterDetails = "Enter Plant Details";
   static const plantPredictionEnterFarmerLocation = "Pick farmer location";
   static const plantPredictionEnterSoilPh = "Enter soil pH value";
-  static const plantPredictionEnterGrowTimePeriod = "Enter growing time period";
+  static const plantPredictionEnterGrowTimePeriod = "Enter growing time period (months)";
   static const plantPredictionWeatherPrediction = "Weather Prediction";
   static const plantPredictionMostSuitablePlant = "Most Suitable Plants";
   static const plantPredictionMostPickWhich = "Please pick what you would like to predict";
