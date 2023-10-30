@@ -1,3 +1,4 @@
+import 'package:flower_prediction/models/weather_model.dart';
 import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/viewmodels/predict_flower_viewmodel.dart';
@@ -32,8 +33,7 @@ class WeatherPrediction extends StatelessWidget {
               itemCount: model.predictedWeather.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  title: tempItem(context, model.predictedWeather[index].month,
-                      model.predictedWeather[index].predicted.toStringAsFixed(1)),
+                  title: tempItem(context, model.predictedWeather[index]),
                 );
               }),
         );
@@ -41,7 +41,7 @@ class WeatherPrediction extends StatelessWidget {
     );
   }
 
-  tempItem(BuildContext context, String title, String body) {
+  tempItem(BuildContext context, WeatherModel model) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
@@ -57,7 +57,7 @@ class WeatherPrediction extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    title,
+                    model.date,
                     textAlign: TextAlign.start,
                     style: const TextStyle(fontSize: 18.0),
                   ),
@@ -76,11 +76,37 @@ class WeatherPrediction extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    '🌡️ $body°C',
+                    ' 🌡️    ${model.temperature.toStringAsFixed(1)}°C',
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
-              )
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.only(top: 10),
+                decoration: const BoxDecoration(
+                    color: Color(0x2AC2C2C2), borderRadius: BorderRadius.all(Radius.circular(10))),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    ' 🌧️    ${model.rainfall.toStringAsFixed(1)}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.only(top: 10),
+                decoration: const BoxDecoration(
+                    color: Color(0x2AC2C2C2), borderRadius: BorderRadius.all(Radius.circular(10))),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    ' 🌬️    ${model.windspeed.toStringAsFixed(1)}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

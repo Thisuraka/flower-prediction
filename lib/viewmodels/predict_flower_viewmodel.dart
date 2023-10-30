@@ -76,8 +76,8 @@ class PredictFlowerViewModel extends ChangeNotifier {
         if (response.data == "No suitable flowers") {
           dataPopup('No suitable flowers found');
         } else {
-          final List<dynamic> jsonList = json.decode(response.data['weather_data']);
-          predictedWeather = jsonList.map((json) => WeatherModel.fromJson(json)).toList();
+          predictedWeather =
+              (response.data['weather_data'] as List).map((item) => WeatherModel.fromJson(item)).toList();
 
           Navigator.of(NavigationService.navigatorKey.currentContext!)
               .push(MaterialPageRoute(builder: (context) => const WeatherPrediction()));
@@ -85,7 +85,6 @@ class PredictFlowerViewModel extends ChangeNotifier {
       }
     } catch (e) {
       EasyLoading.dismiss();
-      Navigator.pop(NavigationService.navigatorKey.currentContext!);
       Utils.showSnackBar('Something went wrong', NavigationService.navigatorKey.currentContext!);
     }
   }
