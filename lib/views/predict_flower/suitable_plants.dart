@@ -30,10 +30,10 @@ class SuitablePlants extends StatelessWidget {
               ),
               color: Colors.transparent),
           child: ListView.builder(
-            itemCount: model.suitablePlants.length,
+            itemCount: model.suggestedPlants.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
-                title: FlowerExpandingWidget(suitableFlowerModel: model.suitablePlants[index]),
+                title: FlowerExpandingWidget(suitableFlowerModel: model.suggestedPlants[index]),
               );
             },
           ),

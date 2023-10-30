@@ -21,7 +21,7 @@ class PredictFlowerViewModel extends ChangeNotifier {
   final FlowerService service = FlowerService();
 
   List<WeatherModel> predictedWeather = [];
-  List<SuitableFlowerModel> suitablePlants = [];
+  List suggestedPlants = [];
 
   final formKey = GlobalKey<FormState>();
   String? farmerLocation = "Colombo";
@@ -91,7 +91,7 @@ class PredictFlowerViewModel extends ChangeNotifier {
   }
 
   void processSuitable() async {
-    suitablePlants = [];
+    suggestedPlants = [];
 
     EasyLoading.instance
       ..displayDuration = const Duration(milliseconds: 2000)
@@ -117,18 +117,18 @@ class PredictFlowerViewModel extends ChangeNotifier {
           dataPopup('No suitable flowers found');
         } else {
           final List bestSuggested = response.data['flower_data']['bestSuggested'];
+
           for (var flower in bestSuggested) {
             for (var flowerData in suitableFlowerData) {
               bool isOfType = flower.toLowerCase().contains(flowerData.classification!.toLowerCase());
-              if (!isOfType) {
-                break;
+              if (isOfType) {
+                final updatedFlower = flowerData.copyWith(flowerName: flower);
+                suggestedPlants.add(updatedFlower);
               }
-              final updatedFlower = flowerData.copyWith(flowerName: flower);
-              suitablePlants.add(updatedFlower);
             }
           }
 
-          if (suitablePlants.isEmpty) {
+          if (suggestedPlants.isEmpty) {
             dataPopup('No suitable flowers found');
           } else {
             Navigator.of(NavigationService.navigatorKey.currentContext!)
