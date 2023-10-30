@@ -87,8 +87,7 @@ List<DiseaseModel> diseaseStatic = [
       ),
       3: TreatmentPlan(
         plan: "Plant Resistant Varieties",
-        desc:
-            "Whenever possible, select plant varieties that are resistant to black rot.",
+        desc: "Whenever possible, select plant varieties that are resistant to black rot.",
       ),
       4: TreatmentPlan(
         plan: "Fungicides",
@@ -123,7 +122,7 @@ List<DiseaseModel> diseaseStatic = [
     },
   ),
   DiseaseModel(
-    key: "Scab_leaf_disease_Stage_1",
+    key: "Scab_Stage_1",
     disease: "Blight leaf disease stage 1",
     description:
         "In the first stage of scab leaf disease, early symptoms become visible. Infected leaves display small, superficial lesions or scabs, often with a velvety or powdery appearance, which give the disease its name. These lesions might be slightly discolored and do not yet significantly harm the overall health of the tree. Stage 1 is a crucial early detection point, signaling the need for vigilant orchard management to prevent the disease from advancing and causing more severe damage to the flowers and leaves.",
@@ -182,7 +181,7 @@ List<DiseaseModel> diseaseStatic = [
     },
   ),
   DiseaseModel(
-    key: "Scab_leaf_disease_Stage_2",
+    key: "Scab_Stage_2",
     disease: "Scab leaf disease Stage 2",
     description:
         "In the second stage of scab leaf disease, the symptoms become more pronounced and concerning. Infected leaves exhibit larger and more numerous lesions with a raised, scaly texture. The scabs often take on a dark, olive-green or black appearance, creating a distinctive and unsightly pattern. At this stage, the disease may spread to nearby fruit, increasing the risk of reduced fruit quality and yield. Timely intervention is critical to prevent further escalation of the disease, emphasizing the importance of effective management strategies in scab leaf disease control.",
@@ -230,8 +229,7 @@ List<DiseaseModel> diseaseStatic = [
       ),
       8: TreatmentPlan(
         plan: "Post-Harvest Cleanup",
-        desc:
-            "After harvest, ensure thorough orchard cleanup to remove any remaining infected debris.",
+        desc: "After harvest, ensure thorough orchard cleanup to remove any remaining infected debris.",
       ),
       9: TreatmentPlan(
         plan: "Varietal Selection",
@@ -246,7 +244,7 @@ List<DiseaseModel> diseaseStatic = [
     },
   ),
   DiseaseModel(
-    key: "Blight_leaf_disease_stage_1",
+    key: "Blight_Stage_1",
     disease: "Blight leaf disease stage 1",
     description:
         "In the initial stage of blight leaf disease, subtle symptoms start to appear on plant leaves, typically affecting a wide range of crops, including tomatoes and potatoes. Early signs include small, water-soaked lesions or spots that are often brown or black in color and can be mistaken for various other leaf diseases. At this stage, the overall plant health remains relatively unaffected, but it serves as a critical warning sign for vigilant gardeners and farmers. Swift identification and intervention are vital to prevent the disease from progressing to more advanced stages and causing severe damage to the plants.",
@@ -301,7 +299,7 @@ List<DiseaseModel> diseaseStatic = [
     },
   ),
   DiseaseModel(
-    key: "Blight_leaf_disease_stage 2",
+    key: "Blight_Stage_2",
     disease: "Blight leaf disease stage 2",
     description:
         "In the second stage of blight leaf disease, the situation intensifies with more noticeable and destructive symptoms. Infected plant leaves display larger, dark lesions with characteristic concentric rings, often surrounded by a yellow halo. These lesions can rapidly multiply, causing the leaves to wither and die, significantly impacting the plant's overall health and vitality. At this stage, the disease may spread to the plant's fruit or tubers, posing a severe threat to crop yields. Timely intervention and a comprehensive management strategy are imperative to prevent further escalation and mitigate the damage caused by blight leaf disease",
@@ -349,8 +347,7 @@ List<DiseaseModel> diseaseStatic = [
       ),
       8: TreatmentPlan(
         plan: "Monitor and Scout",
-        desc:
-            "Regularly inspect your plants for new infections, and remove affected parts promptly.",
+        desc: "Regularly inspect your plants for new infections, and remove affected parts promptly.",
       ),
       9: TreatmentPlan(
         plan: "Record Keeping",

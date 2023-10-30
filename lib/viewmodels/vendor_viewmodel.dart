@@ -102,6 +102,7 @@ class VendorViewModel extends ChangeNotifier {
         Utils.showSnackBar('Something went wrong -- $e', NavigationService.navigatorKey.currentContext!);
       }
     }
+    notifyListeners();
   }
 
   Future<Position> determinePosition() async {

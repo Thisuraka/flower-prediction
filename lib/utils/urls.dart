@@ -1,13 +1,13 @@
 class UrlConstants {
-  static const String environment = "development";
-  // static const String environment = "production";
+  // static const String environment = "development";
+  static const String environment = "production";
   static const String baseUrl = "http://10.0.2.2:5000";
 
   static String getDiseaseEndpoint() {
     if (environment == "development") {
       return "$baseUrl/disease-identification";
     } else {
-      return "https://identifytype-w2qyntknzq-uc.a.run.app/disease-identification";
+      return "https://predictdisease-5h6nrskqnq-as.a.run.app/disease-identification";
     }
   }
 
@@ -15,7 +15,7 @@ class UrlConstants {
     if (environment == "development") {
       return "$baseUrl/growth_classify";
     } else {
-      return "https://identifytype-w2qyntknzq-uc.a.run.app/growth_classify";
+      return "https://classifyplant-5h6nrskqnq-as.a.run.app/growth_classify";
     }
   }
 
@@ -23,7 +23,7 @@ class UrlConstants {
     if (environment == "development") {
       return "$baseUrl/suggest-flower";
     } else {
-      return "https://identifytype-w2qyntknzq-uc.a.run.app/suggest-flower";
+      return "https://suggestflower-5h6nrskqnq-as.a.run.app/suggest-flower";
     }
   }
 
@@ -31,7 +31,7 @@ class UrlConstants {
     if (environment == "development") {
       return "$baseUrl/shortest-path";
     } else {
-      return "https://identifytype-w2qyntknzq-uc.a.run.app/shortest-path";
+      return "https://shortestpath-5h6nrskqnq-as.a.run.app/shortest-path";
     }
   }
 
@@ -39,7 +39,7 @@ class UrlConstants {
     if (environment == "development") {
       return "$baseUrl/cost-calculation";
     } else {
-      return "https://identifytype-w2qyntknzq-uc.a.run.app/cost-calculation";
+      return "https://costcalculation-5h6nrskqnq-as.a.run.app/cost-calculation";
     }
   }
 }

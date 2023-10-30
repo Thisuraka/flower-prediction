@@ -81,13 +81,3 @@ class DiseaseViewModel extends ChangeNotifier {
   }
 }
 
-
-// Sample reponse
-// {
-//     "data": {
-//         "predicted_class": "Blight_Stage_2",
-//         "predicted_probabilities": "0.8442887"
-//     },
-//     "status_code": 200,
-//     "success": true
-// }

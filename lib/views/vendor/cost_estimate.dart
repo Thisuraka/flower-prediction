@@ -29,79 +29,81 @@ class CostEstimate extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             color: Colors.transparent),
-        child: Center(
-          child: Consumer<VendorViewModel>(builder: (context, model, child) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(105, 64, 63, 63),
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: RoundedTextboxWidget(
-                          controller: model.numberOfPlantsController,
-                          labelText: AppStrings.plantVendorEnterNumberOfPlants,
-                          keyboardType: const TextInputType.numberWithOptions(decimal: false),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return AppStrings.enterValues;
-                            }
-                            return null;
+        child: SingleChildScrollView(
+          child: Center(
+            child: Consumer<VendorViewModel>(builder: (context, model, child) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(105, 64, 63, 63),
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: RoundedTextboxWidget(
+                            controller: model.numberOfPlantsController,
+                            labelText: AppStrings.plantVendorEnterNumberOfPlants,
+                            keyboardType: const TextInputType.numberWithOptions(decimal: false),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return AppStrings.enterValues;
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              textStyle: const TextStyle(fontSize: 20), backgroundColor: greenLvl1),
+                          child: const Text(
+                            AppStrings.plantVendorGetEstimate,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {
+                            model.costCalculation(vendorId);
                           },
                         ),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            textStyle: const TextStyle(fontSize: 20), backgroundColor: greenLvl1),
-                        child: const Text(
-                          AppStrings.plantVendorGetEstimate,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () {
-                          model.costCalculation(vendorId);
-                        },
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                model.plantCostModel != null
-                    ? Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.6,
-                        margin: const EdgeInsets.all(10),
-                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        decoration: const BoxDecoration(
-                            color: Color.fromARGB(105, 64, 63, 63),
-                            borderRadius: BorderRadius.all(Radius.circular(20))),
-                        child: Column(
-                          children: [
-                            itemRow(AppStrings.plantVendorCostPerPlant,
-                                model.plantCostModel!.costPerPlant.toString(), context),
-                            itemRow(AppStrings.plantVendorFertilizerPerUnit,
-                                model.plantCostModel!.fertilizerPerUnit.toString(), context),
-                            itemRow(AppStrings.plantVendorFlowersPerPlant,
-                                model.plantCostModel!.flowersPerPlant.toString(), context),
-                            itemRow(AppStrings.plantVendorSinglePlantCost,
-                                model.plantCostModel!.singlePlantCost.toString(), context),
-                            itemRow(AppStrings.plantVendorTotalCost,
-                                model.plantCostModel!.totalCost.toString(), context),
-                            itemRow(AppStrings.plantVendorTotalNoOfFlowers,
-                                model.plantCostModel!.totalNoOfFlowers.toString(), context),
-                            itemRow(AppStrings.plantVendorTravelCost,
-                                model.plantCostModel!.travelCost.toString(), context),
-                          ],
-                        ),
-                      )
-                    : Container(),
-              ],
-            );
-          }),
+                  model.plantCostModel != null
+                      ? Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.6,
+                          margin: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                          decoration: const BoxDecoration(
+                              color: Color.fromARGB(105, 64, 63, 63),
+                              borderRadius: BorderRadius.all(Radius.circular(20))),
+                          child: Column(
+                            children: [
+                              itemRow(AppStrings.plantVendorCostPerPlant,
+                                  model.plantCostModel!.costPerPlant.toString(), context),
+                              itemRow(AppStrings.plantVendorFertilizerPerUnit,
+                                  model.plantCostModel!.fertilizerPerUnit.toString(), context),
+                              itemRow(AppStrings.plantVendorFlowersPerPlant,
+                                  model.plantCostModel!.flowersPerPlant.toString(), context),
+                              itemRow(AppStrings.plantVendorSinglePlantCost,
+                                  model.plantCostModel!.singlePlantCost.toString(), context),
+                              itemRow(AppStrings.plantVendorTotalCost,
+                                  model.plantCostModel!.totalCost.toString(), context),
+                              itemRow(AppStrings.plantVendorTotalNoOfFlowers,
+                                  model.plantCostModel!.totalNoOfFlowers.toString(), context),
+                              itemRow(AppStrings.plantVendorTravelCost,
+                                  model.plantCostModel!.travelCost.toString(), context),
+                            ],
+                          ),
+                        )
+                      : Container(),
+                ],
+              );
+            }),
+          ),
         ),
       ),
     );

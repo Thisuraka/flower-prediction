@@ -4,6 +4,7 @@ import 'package:flower_prediction/models/base_api_response.dart';
 import 'package:flower_prediction/models/suitable_flower_model.dart';
 import 'package:flower_prediction/models/weather_model.dart';
 import 'package:flower_prediction/service/flower_service.dart';
+import 'package:flower_prediction/style.dart';
 import 'package:flower_prediction/utils/navigation_service.dart';
 import 'package:flower_prediction/utils/static/suitable_flower_static.dart';
 import 'package:flower_prediction/utils/urls.dart';
@@ -53,6 +54,13 @@ class PredictFlowerViewModel extends ChangeNotifier {
   }
 
   void processWeather() async {
+    EasyLoading.instance
+      ..displayDuration = const Duration(milliseconds: 2000)
+      ..indicatorColor = Colors.white
+      ..maskColor = const Color(0xDA1B0130)
+      ..textColor = greenLvl1
+      ..dismissOnTap = false;
+    EasyLoading.show(status: 'loading...');
     try {
       BaseAPIResponse response = await service.predictFlower(UrlConstants.getFlowerWeatherEndpoint(), {
         "location": farmerLocation,
@@ -60,9 +68,12 @@ class PredictFlowerViewModel extends ChangeNotifier {
         "ph_value": soilPhValueController.text,
       });
       if (response.error) {
+        EasyLoading.dismiss();
         Utils.showSnackBar(
             'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
       } else {
+        print(response.data);
+        EasyLoading.dismiss();
         if (response.data == "No suitable flowers") {
           dataPopup('No suitable flowers found');
         } else {
@@ -82,6 +93,15 @@ class PredictFlowerViewModel extends ChangeNotifier {
 
   void processSuitable() async {
     suitablePlants = [];
+
+    EasyLoading.instance
+      ..displayDuration = const Duration(milliseconds: 2000)
+      ..indicatorColor = Colors.white
+      ..maskColor = const Color(0xDA1B0130)
+      ..textColor = greenLvl1
+      ..dismissOnTap = false;
+    EasyLoading.show(status: 'loading...');
+
     try {
       BaseAPIResponse response = await service.predictFlower(UrlConstants.getFlowerWeatherEndpoint(), {
         "location": farmerLocation,
@@ -89,9 +109,11 @@ class PredictFlowerViewModel extends ChangeNotifier {
         "ph_value": soilPhValueController.text,
       });
       if (response.error) {
+        EasyLoading.dismiss();
         Utils.showSnackBar(
             'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
       } else {
+        EasyLoading.dismiss();
         if (response.data == "No suitable flowers") {
           dataPopup('No suitable flowers found');
         } else {
@@ -116,6 +138,7 @@ class PredictFlowerViewModel extends ChangeNotifier {
         }
       }
     } catch (e) {
+      EasyLoading.dismiss();
       Utils.showSnackBar('Something went wrong', NavigationService.navigatorKey.currentContext!);
     }
   }

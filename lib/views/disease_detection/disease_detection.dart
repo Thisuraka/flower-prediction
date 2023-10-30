@@ -32,7 +32,7 @@ class DiseaseDetection extends StatelessWidget {
           return CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
-                expandedHeight: MediaQuery.of(context).size.height * 0.8,
+                expandedHeight: MediaQuery.of(context).size.height * 0.6,
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.transparent,
                 floating: false,
@@ -41,63 +41,61 @@ class DiseaseDetection extends StatelessWidget {
                 flexibleSpace: FlexibleSpaceBar(
                   background: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.2,
-                          margin: const EdgeInsets.only(top: 20),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(20),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: const Offset(0, 2),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.2,
+                            margin: const EdgeInsets.only(top: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(20),
                               ),
-                            ],
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: Image.file(File(model.imageFile!.path)),
+                            ),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Image.file(File(model.imageFile!.path)),
+                          const SizedBox(
+                            height: 20.0,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Text(
-                          model.diseaseModel.disease!,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 22.0, color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Text(
-                          model.diseaseModel.description!,
-                          textAlign: TextAlign.justify,
-                          style: const TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Text(
-                          model.diseaseModel.description2!,
-                          textAlign: TextAlign.justify,
-                          style: const TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const Text(
-                          AppStrings.treatment,
-                          style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                          Text(
+                            model.diseaseModel.disease!,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 22.0, color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          Text(
+                            model.diseaseModel.description!,
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          Text(
+                            model.diseaseModel.description2!,
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
