@@ -37,7 +37,12 @@ class FlowerService {
     return response;
   }
 
-    Future<BaseAPIResponse> closestVendor(String endpoint, Map<String, dynamic> body) async {
+  Future<BaseAPIResponse> closestVendor(String endpoint, Map<String, dynamic> body) async {
+    BaseAPIResponse response = await Network.request(url: endpoint, method: RequestType.post, body: body);
+    return response;
+  }
+
+  Future<BaseAPIResponse> costCalculation(String endpoint, Map<String, dynamic> body) async {
     BaseAPIResponse response = await Network.request(url: endpoint, method: RequestType.post, body: body);
     return response;
   }

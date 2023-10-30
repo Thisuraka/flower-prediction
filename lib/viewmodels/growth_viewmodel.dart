@@ -75,8 +75,7 @@ class GrowthViewModel extends ChangeNotifier {
     } else {
       try {
         EasyLoading.dismiss();
-        // growthModel = growthStatic.firstWhere((element) => element.key == response.data['level']);
-        growthModel = growthStatic[1];
+        growthModel = growthStatic.firstWhere((element) => element.key == response.data['level']);
         Navigator.pop(NavigationService.navigatorKey.currentContext!);
         Navigator.of(NavigationService.navigatorKey.currentContext!)
             .push(MaterialPageRoute(builder: (context) => const GrowthDetection()));
@@ -88,5 +87,3 @@ class GrowthViewModel extends ChangeNotifier {
     }
   }
 }
-
-// {predicted_class: Month_6, predicted_label: Overgrown}

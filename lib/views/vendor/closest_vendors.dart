@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
+import 'package:flower_prediction/views/vendor/cost_estimate.dart';
 import 'package:flower_prediction/views/vendor/route_map.dart';
 import 'package:flower_prediction/widgets/custom_app_bar.dart';
 import 'package:flower_prediction/widgets/vendor_expanding_widget.dart';
@@ -75,6 +76,18 @@ class ClosestVendors extends StatelessWidget {
                                   userLocation:
                                       LatLng(model.userLocation!.latitude, model.userLocation!.longitude),
                                   closestVendorsModel: model.closestVendors[index],
+                                ),
+                              ),
+                            );
+                          },
+                          goToPriceEstimate: () {
+                            model.numberOfPlantsController.clear();
+                            model.plantCostModel = null;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CostEstimate(
+                                  vendorId: model.closestVendors[index].vendorId,
                                 ),
                               ),
                             );

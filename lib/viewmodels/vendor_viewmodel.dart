@@ -1,5 +1,6 @@
 import 'package:flower_prediction/models/base_api_response.dart';
 import 'package:flower_prediction/models/closest_vendors.dart';
+import 'package:flower_prediction/models/plant_cost_model.dart';
 import 'package:flower_prediction/service/flower_service.dart';
 import 'package:flower_prediction/utils/navigation_service.dart';
 import 'package:flower_prediction/utils/urls.dart';
@@ -16,6 +17,8 @@ class VendorViewModel extends ChangeNotifier {
   List<ClosestVendorsModel> closestVendors = [];
   Set<Marker> vendorMarkerList = {};
   Position? userLocation;
+  TextEditingController numberOfPlantsController = TextEditingController();
+  PlantCostModel? plantCostModel;
 
   void getClosestVendors() async {
     closestVendors = [];
@@ -67,6 +70,33 @@ class VendorViewModel extends ChangeNotifier {
             MaterialPageRoute(builder: (context) => const ClosestVendors()),
           );
         }
+      } catch (e) {
+        EasyLoading.dismiss();
+        Utils.showSnackBar('Something went wrong -- $e', NavigationService.navigatorKey.currentContext!);
+      }
+    }
+  }
+
+  void costCalculation(int vendorId) async {
+    EasyLoading.instance
+      ..displayDuration = const Duration(milliseconds: 2000)
+      ..indicatorColor = Colors.white
+      ..maskColor = const Color(0xDA1B0130)
+      ..textColor = Colors.white
+      ..dismissOnTap = false;
+
+    EasyLoading.show(status: 'loading...');
+
+    BaseAPIResponse response = await service.costCalculation(UrlConstants.getCostCalcEndpoint(),
+        {"vendor_id": vendorId, "no_of_plants": numberOfPlantsController.text});
+    if (response.error) {
+      EasyLoading.dismiss();
+      Utils.showSnackBar(
+          'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
+    } else {
+      try {
+        EasyLoading.dismiss();
+        plantCostModel = PlantCostModel.fromMap(response.data);
       } catch (e) {
         EasyLoading.dismiss();
         Utils.showSnackBar('Something went wrong -- $e', NavigationService.navigatorKey.currentContext!);

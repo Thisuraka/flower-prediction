@@ -34,4 +34,12 @@ class UrlConstants {
       return "https://identifytype-w2qyntknzq-uc.a.run.app/shortest-path";
     }
   }
+
+  static String getCostCalcEndpoint() {
+    if (environment == "development") {
+      return "$baseUrl/cost-calculation";
+    } else {
+      return "https://identifytype-w2qyntknzq-uc.a.run.app/cost-calculation";
+    }
+  }
 }

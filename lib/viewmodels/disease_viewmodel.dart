@@ -69,7 +69,6 @@ class DiseaseViewModel extends ChangeNotifier {
       try {
         EasyLoading.dismiss();
         diseaseModel = diseaseStatic.firstWhere((element) => element.key == response.data['predicted_class']);
-        // diseaseModel = diseaseStatic.firstWhere((element) => element.key == "Black_rot_Stage_1");
         Navigator.pop(NavigationService.navigatorKey.currentContext!);
         Navigator.of(NavigationService.navigatorKey.currentContext!)
             .push(MaterialPageRoute(builder: (context) => const DiseaseDetection()));
