@@ -32,7 +32,7 @@ class _FlowerExpandingWidgetState extends State<VendorExpandingWidget> {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
-        height: isExpanded ? size * 0.25 : size * 0.05 + 2,
+        height: isExpanded ? size * 0.29 : size * 0.05 + 2,
         width: size * 0.9,
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -53,6 +53,10 @@ class _FlowerExpandingWidgetState extends State<VendorExpandingWidget> {
                     Flex(
                       direction: Axis.vertical,
                       children: [
+                        itemRow(
+                            "🔺",
+                            "${AppStrings.plantVendorVendorId}: ${widget.closestVendorModel.vendorId}",
+                            context),
                         itemRow(
                             "⭐",
                             "${AppStrings.plantVendorRating}: ${widget.closestVendorModel.avgRating}",

@@ -16,6 +16,7 @@ class AppStrings {
       "Click continue to find the growth conditions and fertilizer plans";
   static const plantDiseasePrediction = "Plant Disease Prediction";
   static const plantDiseasePredictionDesc = "Click continue to find the disease staus";
+  static const plantDiseaseHealthy = "Plant is healthy";
 
   static const plantPredictionEnterDetails = "Enter Plant Details";
   static const plantPredictionEnterFarmerLocation = "Pick farmer location";
@@ -30,6 +31,7 @@ class AppStrings {
   static const plantVendorClosest = "Get closest vendor";
   static const plantVendorTitle = "Vendors best suited";
   static const plantVendorRating = "Rating";
+  static const plantVendorVendorId = "Vendor ID";
   static const plantVendorAvgPrice = "Average Price";
   static const plantVendorDirections = "Directions";
   static const plantVendorPriceEstimate = "Price Estimate";
@@ -42,4 +44,6 @@ class AppStrings {
   static const plantVendorTotalCost = "Avg. total cost";
   static const plantVendorTotalNoOfFlowers = "Total number of flowers";
   static const plantVendorTravelCost = "Travel cost";
+  static const plantVendorPlaceOrder = "Place order";
+  static const plantVendorOrderPlaced = "Order placed successfully!";
 }

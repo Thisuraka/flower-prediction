@@ -72,7 +72,6 @@ class PredictFlowerViewModel extends ChangeNotifier {
         Utils.showSnackBar(
             'Something went wrong -- ${response.status}', NavigationService.navigatorKey.currentContext!);
       } else {
-        print(response.data);
         EasyLoading.dismiss();
         if (response.data == "No suitable flowers") {
           dataPopup('No suitable flowers found');

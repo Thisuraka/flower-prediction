@@ -6,6 +6,7 @@ import 'package:flower_prediction/utils/static/diseases_static.dart';
 import 'package:flower_prediction/utils/urls.dart';
 import 'package:flower_prediction/utils/utils.dart';
 import 'package:flower_prediction/views/disease_detection/disease_detection.dart';
+import 'package:flower_prediction/widgets/popups/data_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
@@ -68,10 +69,16 @@ class DiseaseViewModel extends ChangeNotifier {
     } else {
       try {
         EasyLoading.dismiss();
-        diseaseModel = diseaseStatic.firstWhere((element) => element.key == response.data['predicted_class']);
-        Navigator.pop(NavigationService.navigatorKey.currentContext!);
-        Navigator.of(NavigationService.navigatorKey.currentContext!)
-            .push(MaterialPageRoute(builder: (context) => const DiseaseDetection()));
+        if (response.data['predicted_class'] == 'Healthy') {
+          Navigator.pop(NavigationService.navigatorKey.currentContext!);
+          dataPopup(AppStrings.plantDiseaseHealthy);
+        } else {
+          diseaseModel =
+              diseaseStatic.firstWhere((element) => element.key == response.data['predicted_class']);
+          Navigator.pop(NavigationService.navigatorKey.currentContext!);
+          Navigator.of(NavigationService.navigatorKey.currentContext!)
+              .push(MaterialPageRoute(builder: (context) => const DiseaseDetection()));
+        }
       } catch (e) {
         EasyLoading.dismiss();
         Navigator.pop(NavigationService.navigatorKey.currentContext!);
@@ -80,4 +87,3 @@ class DiseaseViewModel extends ChangeNotifier {
     }
   }
 }
-

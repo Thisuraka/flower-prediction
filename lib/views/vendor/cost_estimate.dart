@@ -3,6 +3,7 @@ import 'package:flower_prediction/utils/static/app_assets.dart';
 import 'package:flower_prediction/utils/static/app_strings.dart';
 import 'package:flower_prediction/viewmodels/vendor_viewmodel.dart';
 import 'package:flower_prediction/widgets/custom_app_bar.dart';
+import 'package:flower_prediction/widgets/popups/data_popup.dart';
 import 'package:flower_prediction/widgets/rounded_textbox_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -100,6 +101,18 @@ class CostEstimate extends StatelessWidget {
                           ),
                         )
                       : Container(),
+                  if (model.plantCostModel != null)
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 20), backgroundColor: greenLvl1),
+                      child: const Text(
+                        AppStrings.plantVendorPlaceOrder,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        dataPopup(AppStrings.plantVendorOrderPlaced);
+                      },
+                    ),
                 ],
               );
             }),
