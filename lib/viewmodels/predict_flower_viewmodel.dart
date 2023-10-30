@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flower_prediction/models/base_api_response.dart';
-import 'package:flower_prediction/models/suitable_flower_model.dart';
 import 'package:flower_prediction/models/weather_model.dart';
 import 'package:flower_prediction/service/flower_service.dart';
 import 'package:flower_prediction/style.dart';

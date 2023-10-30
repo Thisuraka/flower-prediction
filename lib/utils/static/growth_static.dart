@@ -70,7 +70,7 @@ List<GrowthModel> growthStatic = [
   ),
   GrowthModel(
     key: "critically_overgrown",
-    status: "Critically  over grown ",
+    status: "Critically over grown ",
     desc:
         "The plant's growth is severely below what is expected for its age, and the suggested fertilizer plan is an attempt to address and improve the situation.",
     fertilAmount:

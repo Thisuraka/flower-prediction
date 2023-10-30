@@ -35,6 +35,8 @@ class GrowthViewModel extends ChangeNotifier {
       imageFile = await CameraHelper.selectImages();
     }
 
+    selectedMonthForGrowth = 1;
+
     if (context.mounted) {
       growthImageViewPopup(
         title: AppStrings.plantGrowthPrediction,
@@ -53,7 +55,11 @@ class GrowthViewModel extends ChangeNotifier {
         },
         onSelected: (value) {
           if (value != null) {
-            selectedMonthForGrowth = int.parse(value);
+            if (value == '6+') {
+              selectedMonthForGrowth = 6;
+            } else {
+              selectedMonthForGrowth = int.parse(value);
+            }
           }
         },
       );
